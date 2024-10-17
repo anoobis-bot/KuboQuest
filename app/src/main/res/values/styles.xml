@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ShapeAppearance.ButtonRounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16sp</item> <!-- Adjust size as needed -->
+    </style>
+</resources>
