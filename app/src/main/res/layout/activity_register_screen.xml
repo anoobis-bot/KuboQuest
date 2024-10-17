@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE"
+    android:backgroundTint="#EEEEEE"
+    android:gravity="center_horizontal|center_vertical"
+    android:orientation="vertical"
+    tools:context=".RegisterScreen">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40sp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Welcome To"
+            android:textAlignment="textStart"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10sp"
+            android:layout_marginBottom="-10sp"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Kubo Quest"
+            android:textAlignment="center"
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins"
+            android:text="Are you ready to watch your progress bloom? If not, then start from now."
+            android:textAlignment="center"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etUserName"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="364sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="Enter your username"
+        android:inputType="text"
+        android:paddingLeft="25sp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="364sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="Enter your username"
+        android:inputType="text"
+        android:paddingLeft="25sp"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/etPasswordConfirm"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="364sp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="Enter your username"
+        android:inputType="text"
+        android:paddingLeft="25sp"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="322sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="20sp"
+        android:backgroundTint="#37B943"
+        android:fontFamily="@font/poppins_bold"
+        android:text="Register"
+        android:textSize="20sp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.ButtonRounded" />
+
+    <TextView
+        android:id="@+id/txtSignInPrompt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="Already have an account ? Sign in"
+        android:textAlignment="center"
+        android:textSize="13sp" />
+
+</LinearLayout>
