@@ -99,7 +99,8 @@
         android:backgroundTint="#37B943"
         android:fontFamily="@font/poppins_bold"
         android:text="Register"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:shapeAppearance="@style/ButtonRounded" />
 
     <TextView
         android:id="@+id/txtSignInPrompt"
