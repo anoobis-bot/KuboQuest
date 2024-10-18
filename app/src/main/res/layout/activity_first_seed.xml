@@ -46,7 +46,6 @@
         android:backgroundTint="#37B943"
         android:fontFamily="@font/poppins_bold"
         android:text="Click to Proceed"
-        android:textSize="20sp"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.ButtonRounded" />
+        android:textSize="20sp" />
 
 </LinearLayout>
