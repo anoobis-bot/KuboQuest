@@ -1,0 +1,20 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="100sp"/>
+            <stroke android:color="#EEEEEE"/>
+            <solid android:color="#EEEEEE"/> <!-- White background for selected option -->
+<!--            <stroke android:width="2dp" android:color="#DADADA"/> &lt;!&ndash; Optional border &ndash;&gt;-->
+            <shadowColor android:color="#BDBDBD"/>
+        </shape>
+    </item>
+
+<!--    &lt;!&ndash; Default state &ndash;&gt;-->
+<!--    <item android:state_checked="false">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <corners android:radius="20dp"/>-->
+<!--            <solid android:color="#E0E0E0"/> &lt;!&ndash; Gray background for unselected option &ndash;&gt;-->
+<!--        </shape>-->
+<!--    </item>-->
+</selector>
