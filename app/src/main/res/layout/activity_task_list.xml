@@ -183,17 +183,17 @@
         android:layout_marginRight="15sp"
         android:layout_marginBottom="10sp"
         android:background="@drawable/rounded_radiogroup"
-        android:checkedButton="@id/btnWeekly"
+        android:checkedButton="@id/btnDaily"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/btnDaily"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="28sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_radiobutton"
             android:button="@null"
-            android:elevation="10sp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center_horizontal|center_vertical"
             android:text="Daily"
@@ -206,7 +206,6 @@
             android:layout_weight="1"
             android:background="@drawable/rounded_radiobutton"
             android:button="@null"
-            android:elevation="10sp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center_horizontal|center_vertical"
             android:text="Weekly"
@@ -215,11 +214,10 @@
         <RadioButton
             android:id="@+id/btnMonthly"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="28sp"
             android:layout_weight="1"
             android:background="@drawable/rounded_radiobutton"
             android:button="@null"
-            android:elevation="10sp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center_horizontal|center_vertical"
             android:text="Monthly"
@@ -227,6 +225,7 @@
     </RadioGroup>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="401dp">
 
