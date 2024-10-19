@@ -59,7 +59,7 @@
     <EditText
         android:id="@+id/loginUsername"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="364sp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:background="@drawable/rounded_edittext"
@@ -76,7 +76,7 @@
     <EditText
         android:id="@+id/loginPassword"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="364sp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:background="@drawable/rounded_edittext"

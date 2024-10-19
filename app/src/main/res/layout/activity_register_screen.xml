@@ -54,7 +54,7 @@
     <EditText
         android:id="@+id/etUserName"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="364sp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:background="@drawable/rounded_edittext"
@@ -70,7 +70,7 @@
     <EditText
         android:id="@+id/etPassword"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="364sp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:background="@drawable/rounded_edittext"
@@ -86,7 +86,7 @@
     <EditText
         android:id="@+id/etPasswordConfirm"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="364sp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15sp"
         android:background="@drawable/rounded_edittext"
