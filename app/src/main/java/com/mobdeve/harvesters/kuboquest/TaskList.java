@@ -52,9 +52,15 @@ public class TaskList extends AppCompatActivity {
                         toast.show();
                     }
 
-                    else
+                    else if (result.getResultCode() == 3)
                     {
                         Toast toast = Toast.makeText(TaskList.this, "Deleted!", duration);
+                        toast.show();
+
+                    }
+                    else if (result.getResultCode() == Activity.RESULT_CANCELED)
+                    {
+                        Toast toast = Toast.makeText(TaskList.this, "Canceled!", duration);
                         toast.show();
                     }
                 }

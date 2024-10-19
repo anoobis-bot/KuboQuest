@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -49,10 +50,31 @@ public class AddTaskActivity extends AppCompatActivity {
         difficultyChoices.add("Hard");
         difficultyChoices.add("Extreme");
 
-        ArrayAdapter<String> frequencyAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, frequencyChoices);
-        ArrayAdapter<String> difficultyAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, difficultyChoices);
+        ArrayAdapter<String> frequencyAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, frequencyChoices) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // Get the default view
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = (TextView) view;
+                textView.setTextSize(11);
+                return view;
+            }
+        };
+
+        ArrayAdapter<String> difficultyAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, difficultyChoices) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                // Get the default view
+                View view = super.getView(position, convertView, parent);
+
+                TextView textView = (TextView) view;
+                textView.setTextSize(11);
+                return view;
+            }
+        };
 
         frequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
