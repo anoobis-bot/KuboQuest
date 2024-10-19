@@ -61,14 +61,6 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
             txtTaskName = itemView.findViewById(R.id.txtTaskName);
             txtTaskDesc = itemView.findViewById(R.id.txtTaskDesc);
             checkBox = itemView.findViewById(R.id.checkBox);
-
-//            checkBox.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    int position = getAdapterPosition();
-//
-//                }
-//            });
         }
     }
 }
