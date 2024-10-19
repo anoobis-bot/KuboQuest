@@ -1,6 +1,7 @@
 package com.mobdeve.harvesters.kuboquest;
 
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class TaskList extends AppCompatActivity {
 
     boolean showingTask;
+    ImageView bookIcon;
 
     ArrayList<TaskModel> taskModelList = new ArrayList<>();
 
@@ -85,7 +87,18 @@ public class TaskList extends AppCompatActivity {
                 showingTask = !showingTask;
             }
         });
+
+        ImageView bookIcon = findViewById(R.id.imageView8);
+        bookIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TaskList.this, PlantEncyclopedia.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     private void setuptaskModelList() {
         String taskName;

@@ -5,54 +5,54 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    app:cardCornerRadius="15dp"
     android:elevation="4dp"
     android:padding="16dp"
-    android:background="@color/white">
+    android:background="@android:color/transparent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="380dp"
-        android:layout_height="505dp">
+        android:layout_width="350dp"
+        android:layout_height="450dp"
+        android:background="@android:color/transparent"
+        android:clipChildren="true"
+        android:clipToPadding="true">
 
         <!-- Close Button -->
-        <ImageView
-            android:id="@+id/close_button"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_margin="16dp"
-            android:contentDescription="Close"
-            android:src="@drawable/ic_close"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <ImageView-->
+<!--            android:id="@+id/close_button"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_margin="16dp"-->
+<!--            android:contentDescription="Close"-->
+<!--            android:src="@drawable/ic_close"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <!-- Plant Image -->
         <FrameLayout
             android:id="@+id/image_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
+            android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <View
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:background="@drawable/gray_ellipse" />
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@drawable/gray_ellipse"
+                android:paddingRight="10dp" />
 
             <ImageView
                 android:id="@+id/plant_image"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_gravity="center"
                 android:contentDescription="Tomato Image"
                 android:scaleType="centerCrop"
                 android:src="@drawable/fruit_tomato" />
         </FrameLayout>
 
-        <!-- Plant Name -->
-
-        <!-- Plant Description -->
         <TextView
             android:id="@+id/plant_name"
             android:layout_width="wrap_content"
@@ -60,6 +60,7 @@
             android:layout_marginTop="40dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Tomato"
+            android:paddingRight="10dp"
             android:textColor="@android:color/black"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
