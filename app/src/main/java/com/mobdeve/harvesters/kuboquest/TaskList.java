@@ -2,7 +2,10 @@ package com.mobdeve.harvesters.kuboquest;
 
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -17,7 +20,12 @@ import java.util.ArrayList;
 
 public class TaskList extends AppCompatActivity {
 
+    boolean showingTask;
+
     ArrayList<TaskModel> taskModelList = new ArrayList<>();
+
+    int[] playerLevels, plantSprites;
+    int playerLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +42,47 @@ public class TaskList extends AppCompatActivity {
         ProgressBar progressXP = findViewById(R.id.progressXP);
 
         RecyclerView taskRecyclerView = findViewById(R.id.taskRecyclerView);
+        RecyclerView levelRecyclerView = findViewById(R.id.levelRecyclerView);
 
         setuptaskModelList();
+        setupData();
 
-        TaskList_RecyclerViewAdapter adapter =  new TaskList_RecyclerViewAdapter(this,
+        TaskList_RecyclerViewAdapter adapter1 =  new TaskList_RecyclerViewAdapter(this,
                 taskModelList);
-        taskRecyclerView.setAdapter(adapter);
+        taskRecyclerView.setAdapter(adapter1);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        PlayerLevels_RecyclerViewAdapter adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
+                playerLevels, plantSprites);
+        levelRecyclerView.setAdapter(adapter2);
+        levelRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         animateProgress(progressWater, progressWater.getProgress());
         animateProgress(progressXP, progressXP.getProgress());
+
+        RadioGroup sortByButtons = findViewById(R.id.sortByButtons);
+
+        showingTask = true;
+        ImageView imgPlant = findViewById(R.id.imgPlant);
+        imgPlant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!showingTask)
+                {
+                    sortByButtons.setVisibility(View.VISIBLE);
+                    taskRecyclerView.setVisibility(View.VISIBLE);
+                    levelRecyclerView.setVisibility(View.GONE);
+                }
+                else
+                {
+                    sortByButtons.setVisibility(View.GONE);
+                    taskRecyclerView.setVisibility(View.GONE);
+                    levelRecyclerView.setVisibility(View.VISIBLE);
+                }
+
+                showingTask = !showingTask;
+            }
+        });
     }
 
     private void setuptaskModelList() {
@@ -52,6 +91,21 @@ public class TaskList extends AppCompatActivity {
             taskModelList.add(new TaskModel("Task " + i, "This is a task", false));
         }
 
+    }
+
+    private void setupData() {
+        playerLevel = 8;
+
+        ArrayList<Integer> lvls = new ArrayList<>();
+
+        for (int i = 0; i <= playerLevel; i = i + 5) {
+            lvls.add(i);
+        }
+        lvls.add(lvls.get(lvls.size() - 1) + 5);
+
+
+        playerLevels = lvls.stream().mapToInt(i -> i).toArray();
+        plantSprites = new int[]{R.drawable.sprite_plant_lvl0, R.drawable.sprite_plant_lvl5};
     }
 
     private void animateProgress(ProgressBar progressBar, int progress) {
