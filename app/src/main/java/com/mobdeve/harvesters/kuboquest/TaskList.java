@@ -1,6 +1,7 @@
 package com.mobdeve.harvesters.kuboquest;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,8 +9,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -28,6 +34,31 @@ public class TaskList extends AppCompatActivity {
 
     int[] playerLevels, plantSprites;
     int playerLevel;
+
+    private ActivityResultLauncher<Intent> myActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                public void onActivityResult(ActivityResult result) {
+                    int duration = Toast.LENGTH_SHORT;
+
+                    if (result.getResultCode() == 1)
+                    {
+                        Toast toast = Toast.makeText(TaskList.this, "Added!", duration);
+                        toast.show();
+                    }
+
+                    else if (result.getResultCode() == 2)
+                    {
+                        Toast toast = Toast.makeText(TaskList.this, "Edited!", duration);
+                        toast.show();
+                    }
+
+                    else
+                    {
+                        Toast toast = Toast.makeText(TaskList.this, "Deleted!", duration);
+                        toast.show();
+                    }
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +127,17 @@ public class TaskList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageView addTaskImage = findViewById(R.id.addTaskImage);
+        addTaskImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(TaskList.this, AddTaskActivity.class);
+                myActivityResultLauncher.launch(i);
+            }
+        });
+
+
     }
 
 

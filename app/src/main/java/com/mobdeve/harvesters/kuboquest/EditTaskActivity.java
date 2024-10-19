@@ -1,7 +1,11 @@
 package com.mobdeve.harvesters.kuboquest;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -10,11 +14,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class EditTaskActivity extends AppCompatActivity {
 
     private TextView addDateTextView;
+    private Button editTaskBtn;
+    private Button deleteTaskBtn;
+    private Spinner frequencySpinner;
+    private Spinner difficultySpinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +36,36 @@ public class EditTaskActivity extends AppCompatActivity {
             return insets;
         });
 
+        frequencySpinner = findViewById(R.id.frequencySpinner);
+        difficultySpinner = findViewById(R.id.difficultySpinner);
+        ArrayList<String> frequencyChoices = new ArrayList<>();
+        frequencyChoices.add("Daily");
+        frequencyChoices.add("Weekly");
+        frequencyChoices.add("Yearly");
+        ArrayList<String> difficultyChoices = new ArrayList<>();
+        difficultyChoices.add("Easy");
+        difficultyChoices.add("Medium");
+        difficultyChoices.add("Hard");
+        difficultyChoices.add("Extreme");
+
+        ArrayAdapter<String> frequencyAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, frequencyChoices);
+        ArrayAdapter<String> difficultyAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, difficultyChoices);
+
+        frequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        frequencySpinner.setAdapter(frequencyAdapter);
+        difficultySpinner.setAdapter(difficultyAdapter);
+
         addDateTextView = findViewById(R.id.addDateTextView);
+        editTaskBtn = findViewById(R.id.editTaskBtn);
+        deleteTaskBtn = findViewById(R.id.deleteTaskBtn);
 
         addDateTextView.setOnClickListener(v -> showDatePickerDialog());
+        editTaskBtn.setOnClickListener(v -> editTask());
+        deleteTaskBtn.setOnClickListener(v -> deleteTask());
     }
 
     private void showDatePickerDialog() {
@@ -51,5 +87,17 @@ public class EditTaskActivity extends AppCompatActivity {
         );
 
         datePickerDialog.show();
+    }
+
+    private void editTask() {
+        Intent result_intent = new Intent();
+        setResult(2, result_intent);
+        finish();
+    }
+
+    private void deleteTask() {
+        Intent result_intent = new Intent();
+        setResult(0, result_intent);
+        finish();
     }
 }

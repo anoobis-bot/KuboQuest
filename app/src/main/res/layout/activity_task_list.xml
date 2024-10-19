@@ -276,7 +276,7 @@
             />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/addTaskImage"
             android:layout_width="0dp"
             android:layout_height="33sp"
             android:layout_weight="1"
