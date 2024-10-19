@@ -16,6 +16,15 @@
             android:name=".LevelList"
             android:exported="false" />
         <activity
+            android:name=".EditTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".TaskList"
             android:exported="false" />
         <activity
