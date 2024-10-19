@@ -19,6 +19,7 @@
         android:fontFamily="@font/poppins_bold"
         android:text="Seed Name"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="48sp" />
 
     <ImageView
@@ -36,6 +37,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="Congratulations on your first seed!"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="18sp" />
 
     <Button
@@ -46,6 +48,7 @@
         android:backgroundTint="#37B943"
         android:fontFamily="@font/poppins_bold"
         android:text="Click to Proceed"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:shapeAppearance="@style/ButtonRounded" />
 

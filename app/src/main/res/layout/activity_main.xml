@@ -47,6 +47,7 @@
             android:fontFamily="@font/poppins_bold"
             android:text="Kubo Quest"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="60sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +62,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="Turn Tasks into Growth, One Seed at a Time"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <Button
@@ -71,6 +73,7 @@
         android:backgroundTint="#37B943"
         android:fontFamily="@font/poppins_bold"
         android:text="Get Started"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:shapeAppearance="@style/ButtonRounded" />
 

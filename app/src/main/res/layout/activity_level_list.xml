@@ -22,6 +22,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Tomato"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +47,7 @@
             android:layout_marginStart="3dp"
             android:fontFamily="@font/poppins_medium"
             android:text="8"
+            android:textColor="@color/black"
             android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -66,7 +68,7 @@
             android:layout_marginTop="44dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Level: 8"
-            android:textColor="#877777"
+            android:textColor="@color/homePageGray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/progressWater"
             app:layout_constraintTop_toTopOf="@+id/progressWater" />
@@ -125,7 +127,7 @@
             android:layout_marginTop="72dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Status: Healthy"
-            android:textColor="#877777"
+            android:textColor="@color/homePageGray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/progressWater"
             app:layout_constraintTop_toTopOf="@+id/progressWater" />
@@ -156,7 +158,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
             android:text="700XP"
-            android:textColor="#877777"
+            android:textColor="@color/homePageGray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/progressXP"
             app:layout_constraintTop_toBottomOf="@+id/progressXP" />
@@ -168,7 +170,7 @@
             android:layout_marginEnd="5dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Goal: 1000XP"
-            android:textColor="#877777"
+            android:textColor="@color/homePageGray"
             android:textSize="12sp"
             app:layout_constraintEnd_toStartOf="@+id/imageView4"
             app:layout_constraintTop_toBottomOf="@+id/progressXP" />
