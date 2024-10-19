@@ -39,7 +39,9 @@ public class TaskList extends AppCompatActivity {
         });
 
         ProgressBar progressWater = findViewById(R.id.progressWater);
+        TextView txtWater = findViewById(R.id.txtWater);
         ProgressBar progressXP = findViewById(R.id.progressXP);
+        TextView txtXP = findViewById(R.id.txtXP);
 
         RecyclerView taskRecyclerView = findViewById(R.id.taskRecyclerView);
         RecyclerView levelRecyclerView = findViewById(R.id.levelRecyclerView);
@@ -57,8 +59,8 @@ public class TaskList extends AppCompatActivity {
         levelRecyclerView.setAdapter(adapter2);
         levelRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        animateProgress(progressWater, progressWater.getProgress());
-        animateProgress(progressXP, progressXP.getProgress());
+        animateProgress(progressWater, progressWater.getProgress(), txtWater, "", "/100", 1);
+        animateProgress(progressXP, progressXP.getProgress(), txtXP, "", "XP", 10);
 
         RadioGroup sortByButtons = findViewById(R.id.sortByButtons);
 
@@ -108,10 +110,18 @@ public class TaskList extends AppCompatActivity {
         plantSprites = new int[]{R.drawable.sprite_plant_lvl0, R.drawable.sprite_plant_lvl5};
     }
 
-    private void animateProgress(ProgressBar progressBar, int progress) {
+    private void animateProgress(ProgressBar progressBar, int progress,
+                                 TextView progressText, String pre, String post, int multiplier) {
         // Create an ObjectAnimator to animate progress from 0 to the desired value
         ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, progress);
         animation.setDuration(1500); // Set the duration (1.5 seconds)
         animation.start();
+
+        // update the text dynamically during the animation
+        animation.addUpdateListener(animator -> {
+            int animatedValue = (int) animator.getAnimatedValue();
+            animatedValue = animatedValue * multiplier;
+            progressText.setText(pre + animatedValue + post);
+        });
     }
 }

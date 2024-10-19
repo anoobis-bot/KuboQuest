@@ -61,6 +61,18 @@
         android:background="#FEFEFE">
 
         <TextView
+            android:id="@+id/txtWater"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/poppins"
+            android:text="70/100"
+            android:textColor="@color/homePageGray"
+            android:textSize="9sp"
+            app:layout_constraintStart_toEndOf="@+id/progressWater"
+            app:layout_constraintTop_toTopOf="@+id/progressWater" />
+
+        <TextView
             android:id="@+id/txtLevel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,7 +112,7 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="140dp"
             android:layout_height="12.19dp"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="44dp"
             android:indeterminate="false"
             android:max="100"
