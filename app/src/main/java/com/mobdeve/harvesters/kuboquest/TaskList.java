@@ -129,7 +129,7 @@ public class TaskList extends AppCompatActivity {
         bookIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TaskList.this, PlantEncyclopedia.class);
+                Intent intent = new Intent(TaskList.this, PlantEncyclopediaRecycler.class);
                 startActivity(intent);
             }
         });

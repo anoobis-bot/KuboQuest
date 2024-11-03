@@ -16,7 +16,7 @@ public class PlantEncyclopedia extends AppCompatActivity {
         setContentView(R.layout.activity_plant_encyclopedia);
 
         // Find the tomato ImageView in activity_plant_encyclopedia.xml by its ID
-        ImageView tomatoImage = findViewById(R.id.tomatoImage);
+        ImageView tomatoImage = findViewById(R.id.plantImg1);
 
         // Set an onClickListener for the tomato image
         tomatoImage.setOnClickListener(new View.OnClickListener() {
@@ -26,7 +26,7 @@ public class PlantEncyclopedia extends AppCompatActivity {
             }
         });
 
-        ImageView limaBeansImage = findViewById(R.id.limaBeansImage);  // Assuming you have an ImageView with id limaBeansImage
+        ImageView limaBeansImage = findViewById(R.id.plantImg2);  // Assuming you have an ImageView with id limaBeansImage
 
         limaBeansImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,7 +35,7 @@ public class PlantEncyclopedia extends AppCompatActivity {
             }
         });
 
-        ImageView winterMelonImage = findViewById(R.id.winterMelonImage);
+        ImageView winterMelonImage = findViewById(R.id.plantImg3);
 
         winterMelonImage.setOnClickListener(new View.OnClickListener() {
             @Override
