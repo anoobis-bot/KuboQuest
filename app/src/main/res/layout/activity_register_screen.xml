@@ -52,6 +52,22 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/etEmail"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15sp"
+        android:background="@drawable/rounded_edittext"
+        android:ems="10"
+        android:fontFamily="@font/poppins_bold"
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="25sp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grayET"
+        android:textSize="16sp" />
+
+    <EditText
         android:id="@+id/etUserName"
         style="@style/Widget.AppCompat.EditText"
         android:layout_width="350dp"

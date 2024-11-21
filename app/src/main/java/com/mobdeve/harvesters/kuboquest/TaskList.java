@@ -23,9 +23,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 public class TaskList extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     boolean showingTask;
     ImageView bookIcon;
@@ -76,6 +82,18 @@ public class TaskList extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        if (currentUser == null) {
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else {
+            //set all the data of the user
+        }
 
         ProgressBar progressWater = findViewById(R.id.progressWater);
         TextView txtWater = findViewById(R.id.txtWater);

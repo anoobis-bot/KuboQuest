@@ -15,7 +15,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+
+    FirebaseAuth mAuth;
+
 // for reference in the future
 //    private ActivityResultLauncher<Intent> myActivityResultLauncher = registerForActivityResult(
 //            new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -25,6 +32,19 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //    );
+
+// when user is still logged in, skip this page and directly go to TaskList page.
+/*    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(getApplicationContext(), TaskList.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegisterScreen.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
 //                myActivityResultLauncher.launch(intent);
                 startActivity(intent);
                 finish();

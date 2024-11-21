@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "873017600863",
+    "project_id": "mobdeve-85273",
+    "storage_bucket": "mobdeve-85273.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873017600863:android:f2a177236046d1efbaa4ea",
+        "android_client_info": {
+          "package_name": "com.mobdeve.harvesters.kuboquest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABt1yn3gGJcXcESg-9QKrehfnAveuSTI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
