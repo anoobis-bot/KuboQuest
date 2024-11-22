@@ -2,9 +2,11 @@ package com.mobdeve.harvesters.kuboquest;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
@@ -94,6 +96,14 @@ public class TaskList extends AppCompatActivity {
         else {
             //set all the data of the user
         }
+
+        ImageView imgSettings = findViewById(R.id.imgSettings);
+        imgSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLogoutConfirm();
+            }
+        });
 
         ProgressBar progressWater = findViewById(R.id.progressWater);
         TextView txtWater = findViewById(R.id.txtWater);
@@ -202,5 +212,31 @@ public class TaskList extends AppCompatActivity {
             animatedValue = animatedValue * multiplier;
             progressText.setText(pre + animatedValue + post);
         });
+    }
+
+    private void showLogoutConfirm(){
+        Dialog logoutConfirmDialog = new Dialog(this);
+
+        logoutConfirmDialog.setContentView(R.layout.confirm_logout_card);
+        logoutConfirmDialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+
+        TextView txtConfirmLogout = logoutConfirmDialog.findViewById(R.id.txtConfirmLogout);
+        TextView txtConfirmLogoutSub = logoutConfirmDialog.findViewById(R.id.txtConfirmLogourSub);
+        Button btnLogout = logoutConfirmDialog.findViewById(R.id.btnLogout);
+
+
+        txtConfirmLogout.setText("Confirm Logout");
+        txtConfirmLogoutSub.setText("Are you sure you want to logout?");
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        logoutConfirmDialog.show();
     }
 }
