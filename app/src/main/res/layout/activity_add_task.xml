@@ -53,10 +53,11 @@
                     android:fontFamily="@font/poppins_bold"/>
 
                 <EditText
+                    android:id="@+id/txtTaskName"
                     android:layout_width="match_parent"
                     android:layout_height="31dp"
-                    android:textSize="11sp"
-                    android:background="@drawable/rounded_edittext_task" />
+                    android:background="@drawable/rounded_edittext_task"
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,11 +75,12 @@
                     android:fontFamily="@font/poppins_bold"/>
 
                 <EditText
+                    android:id="@+id/txtTaskDesc"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:textSize="11sp"
+                    android:background="@drawable/rounded_edittext_task"
                     android:gravity="start"
-                    android:background="@drawable/rounded_edittext_task" />
+                    android:textSize="11sp" />
             </LinearLayout>
 
             <LinearLayout

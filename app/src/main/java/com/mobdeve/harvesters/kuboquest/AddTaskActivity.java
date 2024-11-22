@@ -26,6 +26,8 @@ public class AddTaskActivity extends AppCompatActivity {
     private Button createTaskBtn;
     private Spinner frequencySpinner;
     private Spinner difficultySpinner;
+    private TextView txtTaskName;
+    private TextView txtTaskDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,8 @@ public class AddTaskActivity extends AppCompatActivity {
 
         addDateTextView = findViewById(R.id.addDateTextView);
         createTaskBtn = findViewById(R.id.createTaskBtn);
+        txtTaskName = findViewById(R.id.txtTaskName);
+        txtTaskDesc = findViewById(R.id.txtTaskDesc);
 
         addDateTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +121,11 @@ public class AddTaskActivity extends AppCompatActivity {
 
     private void createTask() {
         Intent result_intent = new Intent();
+        result_intent.putExtra("task_name", txtTaskName.getText().toString());
+        result_intent.putExtra("task_desc", txtTaskDesc.getText().toString());
+        result_intent.putExtra("task_start_date", addDateTextView.getText().toString());
+        result_intent.putExtra("task_frequency", frequencySpinner.getSelectedItem().toString());
+        result_intent.putExtra("task_difficulty", difficultySpinner.getSelectedItem().toString());
         setResult(1, result_intent);
         finish();
     }

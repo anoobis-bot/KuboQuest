@@ -43,6 +43,8 @@ public class TaskList extends AppCompatActivity {
     int[] playerLevels, plantSprites;
     int playerLevel;
 
+    TaskList_RecyclerViewAdapter adapter1;
+
     private ActivityResultLauncher<Intent> myActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
                 public void onActivityResult(ActivityResult result) {
@@ -52,6 +54,13 @@ public class TaskList extends AppCompatActivity {
                     {
                         Toast toast = Toast.makeText(TaskList.this, "Added!", duration);
                         toast.show();
+
+                        String name = result.getData().getStringExtra("task_name");
+
+                        taskModelList.add(new TaskModel(result.getData().getStringExtra("task_name"),
+                                result.getData().getStringExtra("task_desc"), false));
+
+                        adapter1.notifyItemChanged(taskModelList.size() - 1);
                     }
 
                     else if (result.getResultCode() == 2)
@@ -116,7 +125,7 @@ public class TaskList extends AppCompatActivity {
         setuptaskModelList();
         setupData();
 
-        TaskList_RecyclerViewAdapter adapter1 =  new TaskList_RecyclerViewAdapter(this,
+        adapter1 =  new TaskList_RecyclerViewAdapter(this,
                 taskModelList);
         taskRecyclerView.setAdapter(adapter1);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
