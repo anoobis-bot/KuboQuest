@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -120,6 +122,31 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     private void createTask() {
+        if (TextUtils.isEmpty(txtTaskName.getText())) {
+            Toast.makeText(AddTaskActivity.this, "Missing task name.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(txtTaskDesc.getText())) {
+            Toast.makeText(AddTaskActivity.this, "Missing task description.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(addDateTextView.getText())) {
+            Toast.makeText(AddTaskActivity.this, "Missing task start date.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(frequencySpinner.getSelectedItem().toString())) {
+            Toast.makeText(AddTaskActivity.this, "Missing task frequency.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (TextUtils.isEmpty(txtTaskName.getText().toString())) {
+            Toast.makeText(AddTaskActivity.this, "Missing task difficulty.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         Intent result_intent = new Intent();
         result_intent.putExtra("task_name", txtTaskName.getText().toString());
         result_intent.putExtra("task_desc", txtTaskDesc.getText().toString());

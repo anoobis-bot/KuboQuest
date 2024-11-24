@@ -83,12 +83,6 @@ public class TaskList extends AppCompatActivity {
                         String frequency = result.getData().getStringExtra("task_frequency");
                         String difficulty = result.getData().getStringExtra("task_difficulty");
 
-                        taskModelList.add(new TaskModel(name, desc, start_date, frequency,
-                                                        difficulty,
-                                                false));
-
-                        adapter1.notifyItemChanged(taskModelList.size() - 1);
-
                         //save to db
                         currentUser = mAuth.getCurrentUser();
 
@@ -101,7 +95,18 @@ public class TaskList extends AppCompatActivity {
                             taskData.put(FireStoreReferences.TASKFREQUENCY_FIELD, frequency);
                             taskData.put(FireStoreReferences.TASKDIFFICULTY_FIELD, difficulty);
 
-                            usersRef.document(uid).collection(FireStoreReferences.TASK_COLLECTION).add(taskData);
+                            Date finalStart_date = start_date;
+                            usersRef.document(uid).collection(FireStoreReferences.TASK_COLLECTION)
+                                    .add(taskData)
+                                    .addOnSuccessListener(documentReference -> {
+                                        // Retrieve the document ID of thw Task
+                                        String documentId = documentReference.getId();
+
+                                        // save to taskModelList
+                                        taskModelList.add(new TaskModel(documentId, name, desc, finalStart_date, frequency, difficulty, false));
+
+                                        adapter1.notifyItemChanged(taskModelList.size() - 1);
+                                    });
                         }
 
                         Toast toast = Toast.makeText(TaskList.this, "Task Added!", duration);
