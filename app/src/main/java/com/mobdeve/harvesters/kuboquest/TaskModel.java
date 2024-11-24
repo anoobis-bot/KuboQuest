@@ -5,10 +5,10 @@ import java.util.Date;
 public class TaskModel {
     protected String taskID;
     protected String taskName;
-    protected String taskDescription;
+    protected String taskDesc;
     protected Date createdDate;
-    protected String frequency;
-    protected String difficulty;
+    protected String taskFrequency;
+    protected String taskDifficulty;
     protected boolean isDone;
 
 //    public TaskModel(String taskName, String taskDescription, String taskStartDate,
@@ -23,20 +23,20 @@ public class TaskModel {
 
     public TaskModel(String taskName, String taskDescription, Date createdDate, String frequency, String difficulty, boolean isDone) {
         this.taskName = taskName;
-        this.taskDescription = taskDescription;
+        this.taskDesc = taskDescription;
         this.createdDate = createdDate;
-        this.frequency = frequency;
-        this.difficulty = difficulty;
+        this.taskFrequency = frequency;
+        this.taskDifficulty = difficulty;
         this.isDone = isDone;
     }
 
     public TaskModel(String taskID, String taskName, String taskDescription, Date createdDate, String frequency, String difficulty, boolean isDone) {
         this.taskID = taskID;
         this.taskName = taskName;
-        this.taskDescription = taskDescription;
+        this.taskDesc = taskDescription;
         this.createdDate = createdDate;
-        this.frequency = frequency;
-        this.difficulty = difficulty;
+        this.taskFrequency = frequency;
+        this.taskDifficulty = difficulty;
         this.isDone = isDone;
     }
 
@@ -45,7 +45,7 @@ public class TaskModel {
     }
 
     public String getTaskDescription() {
-        return taskDescription;
+        return taskDesc;
     }
 
     public boolean getIsDone() {
@@ -56,7 +56,7 @@ public class TaskModel {
         this.isDone = !this.isDone;
     }
 
-    public String getFrequency() {
-        return frequency;
+    public String getTaskFrequency() {
+        return taskFrequency;
     }
 }

@@ -47,7 +47,7 @@ public class AddTaskActivity extends AppCompatActivity {
         ArrayList<String> frequencyChoices = new ArrayList<>();
         frequencyChoices.add("Daily");
         frequencyChoices.add("Weekly");
-        frequencyChoices.add("Yearly");
+        frequencyChoices.add("Monthly");
         ArrayList<String> difficultyChoices = new ArrayList<>();
         difficultyChoices.add("Easy");
         difficultyChoices.add("Medium");

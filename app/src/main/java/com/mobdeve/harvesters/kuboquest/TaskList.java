@@ -66,6 +66,7 @@ public class TaskList extends AppCompatActivity {
     int playerLevel;
 
     TaskList_RecyclerViewAdapter adapter1;
+    PlayerLevels_RecyclerViewAdapter adapter2;
 
     private ActivityResultLauncher<Intent> myActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
@@ -105,9 +106,11 @@ public class TaskList extends AppCompatActivity {
                                         String documentId = documentReference.getId();
 
                                         // save to taskModelList
-                                        taskModelList.add(new TaskModel(documentId, name, desc, finalStart_date, frequency, difficulty, false));
+//                                        taskModelList.add(new TaskModel(documentId, name, desc, finalStart_date, frequency, difficulty, false));
+//
+//                                        adapter1.notifyItemChanged(taskModelList.size() - 1);
 
-                                        adapter1.notifyItemChanged(taskModelList.size() - 1);
+                                        adapter1.addTask(new TaskModel(documentId, name, desc, finalStart_date, frequency, difficulty, false));
                                     });
                         }
 
@@ -165,6 +168,14 @@ public class TaskList extends AppCompatActivity {
         }
         else {
             //set all the data of the user
+            setupData();
+
+            adapter1 =  new TaskList_RecyclerViewAdapter(this,
+                    taskModelList, "Daily");
+
+            adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
+                    playerLevels, plantSprites);
+
             loadUserDataFromDB();
         }
 
@@ -191,15 +202,9 @@ public class TaskList extends AppCompatActivity {
         RecyclerView taskRecyclerView = findViewById(R.id.taskRecyclerView);
         RecyclerView levelRecyclerView = findViewById(R.id.levelRecyclerView);
 
-        setupData();
-
-        adapter1 =  new TaskList_RecyclerViewAdapter(this,
-                taskModelList, "Daily");
         taskRecyclerView.setAdapter(adapter1);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        PlayerLevels_RecyclerViewAdapter adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
-                playerLevels, plantSprites);
         levelRecyclerView.setAdapter(adapter2);
         levelRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -339,16 +344,17 @@ public class TaskList extends AppCompatActivity {
                                 TaskModel task = new TaskModel(
                                         doc.getId(),
                                         doc.getString("taskName"),
-                                        doc.getString("taskDescription"),
+                                        doc.getString("taskDesc"),
                                         taskStartDate,
-                                        doc.getString("frequency"),
-                                        doc.getString("difficulty"),
+                                        doc.getString("taskFrequency"),
+                                        doc.getString("taskDifficulty"),
                                         Boolean.TRUE.equals(doc.getBoolean("isDone"))
                                 );
 
                                 // Add task to taskModelList
-                                taskModelList.add(task);
-                                adapter1.notifyItemChanged(taskModelList.size() - 1);
+//                                taskModelList.add(task);
+//                                adapter1.notifyItemChanged(taskModelList.size() - 1);
+                                adapter1.addTask(task);
                             }
                         }
                     });
