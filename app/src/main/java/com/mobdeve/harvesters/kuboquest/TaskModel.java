@@ -3,11 +3,12 @@ package com.mobdeve.harvesters.kuboquest;
 import java.util.Date;
 
 public class TaskModel {
+    protected String taskID;
     protected String taskName;
     protected String taskDescription;
-    protected String taskStartDate;
-    protected String taskFrequency;
-    protected String taskDifficulty;
+    protected Date createdDate;
+    protected String frequency;
+    protected String difficulty;
     protected boolean isDone;
 
     public TaskModel(String taskName, String taskDescription, String taskStartDate,
@@ -20,24 +21,31 @@ public class TaskModel {
         this.isDone = isDone;
     }
 
+    public TaskModel(String taskName, String taskDescription, Date createdDate, String frequency, String difficulty, boolean isDone) {
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+        this.createdDate = createdDate;
+        this.frequency = frequency;
+        this.difficulty = difficulty;
+        this.isDone = isDone;
+    }
+
+    public TaskModel(String taskID, String taskName, String taskDescription, Date createdDate, String frequency, String difficulty, boolean isDone) {
+        this.taskID = taskID;
+        this.taskName = taskName;
+        this.taskDescription = taskDescription;
+        this.createdDate = createdDate;
+        this.frequency = frequency;
+        this.difficulty = difficulty;
+        this.isDone = isDone;
+    }
+
     public String getTaskName() {
         return taskName;
     }
 
     public String getTaskDescription() {
         return taskDescription;
-    }
-
-    public String getTaskStartDate() {
-        return taskStartDate;
-    }
-
-    public String getTaskFrequency() {
-        return taskFrequency;
-    }
-
-    public String getTaskDifficulty() {
-        return taskDifficulty;
     }
 
     public boolean getIsDone() {

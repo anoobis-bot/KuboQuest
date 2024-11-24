@@ -33,19 +33,6 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //    );
 
-// when user is still logged in, skip this page and directly go to TaskList page.
-/*    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(getApplicationContext(), TaskList.class);
-            startActivity(intent);
-            finish();
-        }
-
-    }*/
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,5 +54,13 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+/*        // when user is still logged in, skip this page and directly go to TaskList page.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(getApplicationContext(), TaskList.class);
+            startActivity(intent);
+            finish();
+        }*/
     }
 }
