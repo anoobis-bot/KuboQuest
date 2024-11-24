@@ -25,15 +25,35 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.type.DateTime;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public class TaskList extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference usersRef = db.collection(FireStoreReferences.USER_COLLECTION);
+    CollectionReference tasksRef;
+    Map<String, Object> taskData = new HashMap<>();
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
 
     boolean showingTask;
     ImageView bookIcon;
@@ -52,15 +72,40 @@ public class TaskList extends AppCompatActivity {
 
                     if (result.getResultCode() == 1)
                     {
-                        Toast toast = Toast.makeText(TaskList.this, "Added!", duration);
-                        toast.show();
-
                         String name = result.getData().getStringExtra("task_name");
+                        String desc = result.getData().getStringExtra("task_desc");
+                        Date start_date = null;
+                        try {
+                            start_date = formatter.parse(result.getData().getStringExtra("task_start_date"));
+                        } catch (ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                        String frequency = result.getData().getStringExtra("task_frequency");
+                        String difficulty = result.getData().getStringExtra("task_difficulty");
 
-                        taskModelList.add(new TaskModel(result.getData().getStringExtra("task_name"),
-                                result.getData().getStringExtra("task_desc"), false));
+                        taskModelList.add(new TaskModel(name, desc, start_date, frequency,
+                                                        difficulty,
+                                                false));
 
                         adapter1.notifyItemChanged(taskModelList.size() - 1);
+
+                        //save to db
+                        currentUser = mAuth.getCurrentUser();
+
+                        if (currentUser != null) {
+                            String uid = currentUser.getUid();
+
+                            taskData.put(FireStoreReferences.TASKNAME_FIELD, name);
+                            taskData.put(FireStoreReferences.TASKDESC_FIELD, desc);
+                            taskData.put(FireStoreReferences.TASKSTARTDATE_FIELD, start_date);
+                            taskData.put(FireStoreReferences.TASKFREQUENCY_FIELD, frequency);
+                            taskData.put(FireStoreReferences.TASKDIFFICULTY_FIELD, difficulty);
+
+                            usersRef.document(uid).collection(FireStoreReferences.TASK_COLLECTION).add(taskData);
+                        }
+
+                        Toast toast = Toast.makeText(TaskList.this, "Task Added!", duration);
+                        toast.show();
                     }
 
                     else if (result.getResultCode() == 2)
@@ -83,6 +128,15 @@ public class TaskList extends AppCompatActivity {
                 }
             });
 
+/*    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            loadUserDataFromDB();
+        }
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,6 +158,7 @@ public class TaskList extends AppCompatActivity {
         }
         else {
             //set all the data of the user
+            loadUserDataFromDB();
         }
 
         ImageView imgSettings = findViewById(R.id.imgSettings);
@@ -122,7 +177,6 @@ public class TaskList extends AppCompatActivity {
         RecyclerView taskRecyclerView = findViewById(R.id.taskRecyclerView);
         RecyclerView levelRecyclerView = findViewById(R.id.levelRecyclerView);
 
-        setuptaskModelList();
         setupData();
 
         adapter1 =  new TaskList_RecyclerViewAdapter(this,
@@ -183,16 +237,6 @@ public class TaskList extends AppCompatActivity {
 
     }
 
-
-
-    private void setuptaskModelList() {
-        String taskName;
-        for(int i = 1; i <= 10; i++) {
-            taskModelList.add(new TaskModel("Task " + i, "This is a task", false));
-        }
-
-    }
-
     private void setupData() {
         playerLevel = 8;
 
@@ -240,6 +284,7 @@ public class TaskList extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -247,5 +292,39 @@ public class TaskList extends AppCompatActivity {
         });
 
         logoutConfirmDialog.show();
+    }
+
+    private void loadUserDataFromDB() {
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            usersRef.document(uid).collection(FireStoreReferences.TASK_COLLECTION)
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        for (DocumentSnapshot doc : queryDocumentSnapshots) {
+                            if (doc.exists()) {
+
+                                Timestamp timestamp = doc.getTimestamp("taskStartDate");
+                                assert timestamp != null;
+                                Date taskStartDate = timestamp.toDate();
+
+                                // Map Firestore document to TaskModel object
+                                TaskModel task = new TaskModel(
+                                        doc.getId(),
+                                        doc.getString("taskName"),
+                                        doc.getString("taskDescription"),
+                                        taskStartDate,
+                                        doc.getString("frequency"),
+                                        doc.getString("difficulty"),
+                                        Boolean.TRUE.equals(doc.getBoolean("isDone"))
+                                );
+
+                                // Add task to taskModelList
+                                taskModelList.add(task);
+                                adapter1.notifyItemChanged(taskModelList.size() - 1);
+                            }
+                        }
+                    });
+        }
     }
 }
