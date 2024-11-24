@@ -1,0 +1,290 @@
+[
+  {
+    "name": "Sesame Seed",
+    "sproutXP": "200",
+    "grownXP": "300",
+    "harvestXP": "500",
+    "rarity": "Common",
+    "description": "Sesame seeds are one of the oldest oilseed crops, cultivated over 3,000 years ago! They’re incredibly drought-resistant, perfect for warm climates."
+  },
+  {
+    "name": "Winter Melon",
+    "sproutXP": "200",
+    "grownXP": "300",
+    "harvestXP": "500",
+    "rarity": "Common",
+    "description": "Despite its name, winter melon grows in warm seasons. It’s a staple in Asian cuisine and can grow up to 50 pounds!"
+  },
+  {
+    "name": "Bottle Gourd",
+    "sproutXP": "200",
+    "grownXP": "300",
+    "harvestXP": "500",
+    "rarity": "Common",
+    "description": "Bottle gourd can be used as both food and a container when dried. In ancient times, it was used as a water bottle!"
+  },
+  {
+    "name": "Sponge Gourd",
+    "sproutXP": "200",
+    "grownXP": "300",
+    "harvestXP": "500",
+    "rarity": "Common",
+    "description": "Sponge gourds are also known as luffas. When fully mature, they make great natural sponges for exfoliating skin."
+  },
+  {
+    "name": "Squash",
+    "sproutXP": "200",
+    "grownXP": "300",
+    "harvestXP": "500",
+    "rarity": "Common",
+    "description": "Squash is one of the oldest cultivated crops in the Americas, dating back over 10,000 years!"
+  },
+  {
+    "name": "Tomato ",
+    "sproutXP": "200",
+    "grownXP": "300",
+    "harvestXP": "500",
+    "rarity": "Common",
+    "description": "Tomatoes are a great source of vitamins A, C, and K. They are easy to grow and require full sunlight for optimal growth."
+  },
+  {
+    "name": "Eggplant",
+    "sproutXP": "200",
+    "grownXP": "300",
+    "harvestXP": "500",
+    "rarity": "Common",
+    "description": "Eggplants belong to the same family as tomatoes and potatoes. They were once called \"mad apples\" in Europe!"
+  },
+  {
+    "name": "Lima Beans",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "Known as “butter beans” for their creamy texture, lima beans were cultivated in Peru over 4,000 years ago."
+  },
+  {
+    "name": "Peanuts",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "Peanuts aren’t actually nuts; they’re legumes! They grow underground and are a rich source of protein."
+  },
+  {
+    "name": "Hyacinth Beans",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "This bean has a beautiful purple flower, often used as an ornamental plant. It’s both pretty and edible!"
+  },
+  {
+    "name": "String Beans",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "Also called “green beans,” these are harvested before their seeds fully develop, making them tender and delicious."
+  },
+  {
+    "name": "Winged Beans",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "Winged beans are entirely edible, from leaves to roots, making them incredibly versatile."
+  },
+  {
+    "name": "Jicama",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "Often called the \"Mexican turnip,\" jicama is crunchy and sweet, a perfect addition to salads."
+  },
+  {
+    "name": "Radish",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "Radishes grow super fast, often ready to harvest in just 3-4 weeks. Perfect for impatient gardeners!"
+  },
+  {
+    "name": "Ginger",
+    "sproutXP": "300",
+    "grownXP": "400",
+    "harvestXP": "600",
+    "rarity": "Uncommon",
+    "description": "Known for its spicy, aromatic flavor, ginger is one of the healthiest spices, packed with anti-inflammatory properties."
+  },
+  {
+    "name": "Mustard Green",
+    "sproutXP": "400",
+    "grownXP": "500",
+    "harvestXP": "700",
+    "rarity": "Rare",
+    "description": "Mustard greens pack a punch! They are spicy and peppery, with more vitamin C than oranges."
+  },
+  {
+    "name": "Onion",
+    "sproutXP": "400",
+    "grownXP": "500",
+    "harvestXP": "700",
+    "rarity": "Rare",
+    "description": "Onions are ancient! They were eaten by Egyptian pyramid builders for strength and endurance."
+  },
+  {
+    "name": "Garlic",
+    "sproutXP": "400",
+    "grownXP": "500",
+    "harvestXP": "700",
+    "rarity": "Rare",
+    "description": "Garlic is a natural antibiotic and immune booster. Ancient Greeks used it as a performance enhancer in the original Olympic games!"
+  },
+  {
+    "name": "Hybrid Sesame Seed",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This unique sesame seed can produce oil with enhanced health benefits and is highly drought-resistant."
+  },
+  {
+    "name": "Hybrid Winter Melon",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This super melon is packed with antioxidants and is known to last for months after harvesting."
+  },
+  {
+    "name": "Hybrid Bottle Gourd",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "Known for its versatility, it can be used as a musical instrument when dried!"
+  },
+  {
+    "name": "Hybrid Sponge Gourd",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This hybrid produces durable luffas, perfect for eco-friendly skincare routines."
+  },
+  {
+    "name": "Hybrid Squash",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "Hybrid squash varieties have extended shelf lives and are ideal for both culinary and ornamental uses."
+  },
+  {
+    "name": "Hybrid Tomato ",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This tomato variety has extra resistance to pests and diseases, making it a top pick for sustainable gardening."
+  },
+  {
+    "name": "Hybrid Eggplant",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "Known for its striking color and high nutrient content, this eggplant is packed with antioxidants."
+  },
+  {
+    "name": "Hybrid Lima Beans",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "These beans are larger, creamier, and loaded with protein, ideal for hearty dishes."
+  },
+  {
+    "name": "Hybrid Peanuts",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This peanut variety yields extra-large nuts with a rich flavor, perfect for peanut butter lovers."
+  },
+  {
+    "name": "Hybrid Hyacinth Beans",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "Known for its vibrant color, this bean variety is both a beauty and a powerhouse of nutrients."
+  },
+  {
+    "name": "Hybrid String Beans",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "These beans grow in longer pods and are packed with vitamins A, C, and K."
+  },
+  {
+    "name": "Hybrid Winged Beans",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This rare variety has an even higher protein content, perfect for vegetarian diets."
+  },
+  {
+    "name": "Hybrid Jicama",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This hybrid has a sweeter taste and is packed with fiber, making it a perfect low-calorie snack."
+  },
+  {
+    "name": "Hybrid Radish",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "Known for its vibrant color, this radish is both beautiful and packed with antioxidants."
+  },
+  {
+    "name": "Hybrid Ginger",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This variety is more aromatic and spicier, ideal for culinary uses and health benefits."
+  },
+  {
+    "name": "Hybrid Mustard Green",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "With a stronger flavor, this mustard green packs an extra punch of vitamins and minerals."
+  },
+  {
+    "name": "Hybrid Onion",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "Known for its unique flavor, this onion variety brings extra zest to any dish."
+  },
+  {
+    "name": "Hybrid Garlic",
+    "sproutXP": "550",
+    "grownXP": "650",
+    "harvestXP": "800",
+    "rarity": "Legendary",
+    "description": "This hybrid garlic is more potent and has higher allicin content, perfect for boosting immunity."
+  }
+]

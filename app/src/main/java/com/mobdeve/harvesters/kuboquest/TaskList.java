@@ -43,6 +43,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -165,6 +166,13 @@ public class TaskList extends AppCompatActivity {
         else {
             //set all the data of the user
             loadUserDataFromDB();
+        }
+
+        PlantData plantData = new PlantData(this);
+        List<PlantData.PlantDataList> plantDataList = plantData.getPlantData();
+
+        for (PlantData.PlantDataList plant : plantDataList) {
+            System.out.println(plant.getName());
         }
 
         ImageView imgSettings = findViewById(R.id.imgSettings);
