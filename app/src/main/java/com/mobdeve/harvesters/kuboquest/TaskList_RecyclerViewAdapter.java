@@ -15,10 +15,16 @@ import java.util.ArrayList;
 public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_RecyclerViewAdapter.MyViewHolder> {
     Context context;
     ArrayList<TaskModel> taskModelList;
+    String filterFreq;
 
-    public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList) {
+    public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList, String filterFreq) {
         this.context = context;
         this.taskModelList = taskModelList;
+        this.filterFreq = filterFreq;
+    }
+
+    public void changeFilter(String filterFreq) {
+        this.filterFreq = filterFreq;
     }
 
     @NonNull
@@ -32,16 +38,19 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
     @Override
     public void onBindViewHolder(@NonNull TaskList_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.txtTaskName.setText(taskModelList.get(position).getTaskName());
-        holder.txtTaskDesc.setText(taskModelList.get(position).getTaskDescription());
-        holder.checkBox.setChecked(taskModelList.get(position).getIsDone());
+        if (this.filterFreq.equals(taskModelList.get(position).getTaskFrequency()))
+        {
+            holder.txtTaskName.setText(taskModelList.get(position).getTaskName());
+            holder.txtTaskDesc.setText(taskModelList.get(position).getTaskDescription());
+            holder.checkBox.setChecked(taskModelList.get(position).getIsDone());
 
-        holder.checkBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                taskModelList.get(holder.getAdapterPosition()).invertIsDone();
-            }
-        });
+            holder.checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    taskModelList.get(holder.getAdapterPosition()).invertIsDone();
+                }
+            });
+        }
     }
 
     @Override

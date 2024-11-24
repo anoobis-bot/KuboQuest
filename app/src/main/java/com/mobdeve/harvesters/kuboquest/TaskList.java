@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,7 +59,11 @@ public class TaskList extends AppCompatActivity {
                         String name = result.getData().getStringExtra("task_name");
 
                         taskModelList.add(new TaskModel(result.getData().getStringExtra("task_name"),
-                                result.getData().getStringExtra("task_desc"), false));
+                                result.getData().getStringExtra("task_desc"),
+                                result.getData().getStringExtra("task_start_date"),
+                                result.getData().getStringExtra("task_frequency"),
+                                result.getData().getStringExtra("task_difficulty"),
+                                false));
 
                         adapter1.notifyItemChanged(taskModelList.size() - 1);
                     }
@@ -126,7 +131,7 @@ public class TaskList extends AppCompatActivity {
         setupData();
 
         adapter1 =  new TaskList_RecyclerViewAdapter(this,
-                taskModelList);
+                taskModelList, "Daily");
         taskRecyclerView.setAdapter(adapter1);
         taskRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -139,6 +144,19 @@ public class TaskList extends AppCompatActivity {
         animateProgress(progressXP, progressXP.getProgress(), txtXP, "", "XP", 10);
 
         RadioGroup sortByButtons = findViewById(R.id.sortByButtons);
+        sortByButtons.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                // checkedId is the ID of the selected RadioButton
+                RadioButton selectedRadioButton = findViewById(i);
+
+                // Get the text of the selected RadioButton
+                String selectedText = selectedRadioButton.getText().toString();
+
+                adapter1.changeFilter(selectedText);
+                adapter1.notifyDataSetChanged();
+            }
+        });
 
         showingTask = true;
         ImageView imgPlant = findViewById(R.id.imgPlant);
@@ -188,7 +206,8 @@ public class TaskList extends AppCompatActivity {
     private void setuptaskModelList() {
         String taskName;
         for(int i = 1; i <= 10; i++) {
-            taskModelList.add(new TaskModel("Task " + i, "This is a task", false));
+            taskModelList.add(new TaskModel("Task " + i, "This is a task",
+                    "11/22/2024", "Daily", "Easy", false));
         }
 
     }
