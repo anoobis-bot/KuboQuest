@@ -11,15 +11,15 @@ public class TaskModel {
     protected String difficulty;
     protected boolean isDone;
 
-    public TaskModel(String taskName, String taskDescription, String taskStartDate,
-            String taskFrequency, String taskDifficulty, boolean isDone) {
-        this.taskName = taskName;
-        this.taskDescription = taskDescription;
-        this.taskStartDate = taskStartDate;
-        this.taskFrequency = taskFrequency;
-        this.taskDifficulty = taskDifficulty;
-        this.isDone = isDone;
-    }
+//    public TaskModel(String taskName, String taskDescription, String taskStartDate,
+//            String taskFrequency, String taskDifficulty, boolean isDone) {
+//        this.taskName = taskName;
+//        this.taskDescription = taskDescription;
+//        this.taskStartDate = taskStartDate;
+//        this.taskFrequency = taskFrequency;
+//        this.taskDifficulty = taskDifficulty;
+//        this.isDone = isDone;
+//    }
 
     public TaskModel(String taskName, String taskDescription, Date createdDate, String frequency, String difficulty, boolean isDone) {
         this.taskName = taskName;
@@ -54,5 +54,9 @@ public class TaskModel {
 
     public void invertIsDone() {
         this.isDone = !this.isDone;
+    }
+
+    public String getFrequency() {
+        return frequency;
     }
 }

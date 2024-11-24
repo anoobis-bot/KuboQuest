@@ -38,7 +38,7 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
     @Override
     public void onBindViewHolder(@NonNull TaskList_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        if (this.filterFreq.equals(taskModelList.get(position).getTaskFrequency()))
+        if (this.filterFreq.equals(taskModelList.get(position).getFrequency()))
         {
             holder.txtTaskName.setText(taskModelList.get(position).getTaskName());
             holder.txtTaskDesc.setText(taskModelList.get(position).getTaskDescription());
