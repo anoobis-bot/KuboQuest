@@ -1,6 +1,7 @@
 package com.mobdeve.harvesters.kuboquest;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,16 +27,18 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
     }
 
     public void changeFilter(String filterFreq) {
-        this.filterFreq = filterFreq;
+        synchronized (this) {
+            this.filterFreq = filterFreq;
 
-        filteredTaskList.clear();
-        for (TaskModel task : this.taskModelList) {
-            if (task.getTaskFrequency().equals(this.filterFreq)) {
-                filteredTaskList.add(task);
+            filteredTaskList.clear();
+            for (TaskModel task : this.taskModelList) {
+                if (task.getTaskFrequency().equals(this.filterFreq)) {
+                    filteredTaskList.add(task);
+                }
             }
-        }
 
-        notifyDataSetChanged();
+            notifyDataSetChanged();
+        }
     }
 
     public void addTask(TaskModel task) {
@@ -58,14 +61,31 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
     @Override
     public void onBindViewHolder(@NonNull TaskList_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        holder.txtTaskName.setText(filteredTaskList.get(position).getTaskName());
-        holder.txtTaskDesc.setText(filteredTaskList.get(position).getTaskDescription());
-        holder.checkBox.setChecked(filteredTaskList.get(position).getIsDone());
+        synchronized (this) {
+            holder.txtTaskName.setText(filteredTaskList.get(position).getTaskName());
+            holder.txtTaskDesc.setText(filteredTaskList.get(position).getTaskDescription());
+            holder.checkBox.setChecked(filteredTaskList.get(position).getIsDone());
+
+            if (filteredTaskList.get(position).getIsDone())
+            {
+                holder.checkBox.setEnabled(false);
+                holder.txtTaskName.setPaintFlags(holder.txtTaskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                holder.txtTaskDesc.setPaintFlags(holder.txtTaskDesc.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            }
+            else {
+                holder.checkBox.setEnabled(true);
+                holder.txtTaskName.setPaintFlags(0);
+                holder.txtTaskDesc.setPaintFlags(0);
+            }
+        }
 
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 filteredTaskList.get(holder.getAdapterPosition()).invertIsDone();
+                holder.checkBox.setEnabled(false);
+                holder.txtTaskName.setPaintFlags(holder.txtTaskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                holder.txtTaskDesc.setPaintFlags(holder.txtTaskDesc.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
             }
         });
     }
