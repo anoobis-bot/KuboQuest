@@ -1,5 +1,6 @@
 package com.mobdeve.harvesters.kuboquest;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
@@ -180,6 +181,15 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 TaskList.updatePlantImgTxt(txtLevel, imgPlant);
 
                 adapter2.notifyDataSetChanged();
+
+                // new plant checker
+                if (player.getActivePlant().getCurrentXP() >= player.getActivePlant().getHarvestXP()) {
+                    Intent intent = new Intent(context, FirstSeed.class);
+                    context.startActivity(intent);
+                    if (context instanceof Activity) {
+                        ((Activity) context).finish();
+                    }
+                }
             }
         });
 

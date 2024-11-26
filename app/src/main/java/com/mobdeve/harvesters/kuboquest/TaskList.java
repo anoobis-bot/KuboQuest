@@ -319,6 +319,7 @@ public class TaskList extends AppCompatActivity {
 
                                             // initialize all data in the UI
                                             PlayerModel.initialize(PlantData.findPlantByName(currentPlantName));
+                                            PlayerModel.getInstance().setActivePlant(PlantData.findPlantByName(currentPlantName));
                                             player = PlayerModel.getInstance();
                                             player.setSoilWater(currentWaterLevel);
                                             player.getActivePlant().setCurrentXP(currentPlantXP);
