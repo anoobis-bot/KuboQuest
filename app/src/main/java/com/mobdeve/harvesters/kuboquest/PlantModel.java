@@ -11,6 +11,9 @@ public class PlantModel {
     private int currentXP;
     private boolean isLocked;
     private int iconResource;
+    private int seedResource;
+    private int sproutResource;
+    private int grownResource;
     private int requiredEnergy;
 
     public static enum Stage {
@@ -21,7 +24,7 @@ public class PlantModel {
     }
 
     public PlantModel(String name, String description, String rarity, int sproutXP, int grownXP, int harvestXP,
-                      int iconResource) {
+                      int iconResource, int seedResource, int sproutResource, int grownResource) {
         this.name = name;
         this.description = description;
         this.rarity = rarity;
@@ -35,6 +38,9 @@ public class PlantModel {
         this.requiredEnergy = 10;
 
         this.iconResource = iconResource;
+        this.seedResource = seedResource;
+        this.sproutResource = sproutResource;
+        this.grownResource = grownResource;
     }
 
     public Stage getStage() {
@@ -90,6 +96,18 @@ public class PlantModel {
 
     public void incrementXP(int value) {
         this.currentXP = this.currentXP + value;
+    }
+
+    public int getSeedResource() {
+        return seedResource;
+    }
+
+    public int getSproutResource() {
+        return sproutResource;
+    }
+
+    public int getGrownResource() {
+        return grownResource;
     }
 }
 
