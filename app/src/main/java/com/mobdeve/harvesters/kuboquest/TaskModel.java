@@ -69,10 +69,6 @@ public class TaskModel {
         return taskDifficulty;
     }
 
-    public String getTaskID() {
-        return taskID;
-    }
-
     public String getDateString() {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         return formatter.format(createdDate);
