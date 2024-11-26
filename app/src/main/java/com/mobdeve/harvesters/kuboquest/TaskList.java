@@ -402,7 +402,7 @@ public class TaskList extends AppCompatActivity {
                                         doc.getString("taskDesc"),
                                         taskStartDate,
                                         doc.getString("taskFrequency"),
-                                        doc.getString("taskDiffulty"),
+                                        doc.getString("taskDifficulty"),
                                         Boolean.TRUE.equals(doc.getBoolean("isDone"))
                                 );
 
