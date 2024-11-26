@@ -84,7 +84,7 @@ public class PlantEncyclopedia_RecyclerViewAdapter extends RecyclerView.Adapter<
                 holder.plantImg3.setImageResource(R.drawable.sprite_plant_locked);
             }
             else {
-                holder.plantImg3.setImageResource(plantList.get(position*3 + 1).getIconResource());
+                holder.plantImg3.setImageResource(plantList.get(position*3 + 2).getIconResource());
             }
             holder.plantName3.setText(plantList.get(position*3 + 2).getName());
             holder.plantBox3.setOnClickListener(new View.OnClickListener() {
