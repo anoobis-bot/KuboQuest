@@ -1,5 +1,7 @@
 package com.mobdeve.harvesters.kuboquest;
 
+import static com.mobdeve.harvesters.kuboquest.PlantData.plantData;
+
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Dialog;
@@ -46,6 +48,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class TaskList extends AppCompatActivity {
 
@@ -56,6 +59,22 @@ public class TaskList extends AppCompatActivity {
     CollectionReference tasksRef;
     Map<String, Object> taskData = new HashMap<>();
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+
+    // UI DATA
+    PlayerModel player;
+    TextView txtWater;
+    ProgressBar progressWater;
+    TextView goalXP;
+    ProgressBar progressXP;
+    TextView txtXP;
+
+    // DB variables
+    PlantModel currentPlant;
+    int currentPlantXP;
+    String currentPlantName;
+    String currentPlantID;
+    int currentWaterLevel;
+    int currentPlantLevel;
 
     boolean showingTask;
     ImageView bookIcon;
@@ -158,13 +177,14 @@ public class TaskList extends AppCompatActivity {
             return insets;
         });
 
-        ProgressBar progressWater = findViewById(R.id.progressWater);
-        TextView txtWater = findViewById(R.id.txtWater);
-        ProgressBar progressXP = findViewById(R.id.progressXP);
-        TextView txtXP = findViewById(R.id.txtXP);
+        progressWater = findViewById(R.id.progressWater);
+        txtWater = findViewById(R.id.txtWater);
+        progressXP = findViewById(R.id.progressXP);
+        txtXP = findViewById(R.id.txtXP);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        PlantData.initialize(this);
 
         if (currentUser == null) {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -184,15 +204,8 @@ public class TaskList extends AppCompatActivity {
             loadUserDataFromDB();
         }
 
-//        PlantData plantData = new PlantData(this);
-        List<PlantModel> plantDataList = PlantData.plantData;
-
-        for (PlantModel plant : plantDataList) {
-            System.out.println(plant.getName());
-        }
-
         PlayerModel.initialize(PlantData.findPlantByName("tomato"));
-        PlayerModel player = PlayerModel.getInstance();
+        player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);
         imgSettings.setOnClickListener(new View.OnClickListener() {
@@ -211,11 +224,8 @@ public class TaskList extends AppCompatActivity {
         levelRecyclerView.setAdapter(adapter2);
         levelRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        TextView goalXP = findViewById(R.id.txtGoal);
+        goalXP = findViewById(R.id.txtGoal);
         goalXP.setText("Goal: " + player.getActivePlant().getHarvestXP() + "XP");
-        progressXP.setProgress(player.getActivePlant().getCurrentXP());
-        animateProgress(progressWater, progressWater.getProgress(), 100, txtWater, "", "/100", 1);
-        animateProgress(progressXP, progressXP.getProgress(), player.getActivePlant().getHarvestXP(), txtXP, "", "XP", 1);
 
         RadioGroup sortByButtons = findViewById(R.id.sortByButtons);
         sortByButtons.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -276,7 +286,60 @@ public class TaskList extends AppCompatActivity {
     }
 
     private void setupData() {
-        playerLevel = 8;
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            usersRef.document(uid)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            currentWaterLevel = Objects.requireNonNull(documentSnapshot.getLong("waterLevel")).intValue();
+                            currentPlantID = documentSnapshot.getString("activePlant");
+
+                            player.setSoilWater(currentWaterLevel);
+
+
+                            usersRef.document(uid)
+                                    .collection(FireStoreReferences.PLANT_COLLECTION)
+                                    .document(currentPlantID)
+                                    .get()
+                                    .addOnSuccessListener(documentSnapshot1 -> {
+                                        if (documentSnapshot1.exists()) {
+                                            currentPlantXP = Objects.requireNonNull(documentSnapshot1.getLong("currentXP")).intValue();
+                                            currentPlantName = documentSnapshot1.getString("plantName");
+                                            player.getActivePlant().setCurrentXP(currentPlantXP);
+                                            progressXP.setProgress(player.getActivePlant().getCurrentXP());
+
+                                            // animate after data is received from db
+                                            animateProgress(progressWater, player.getSoilWater(), 100, txtWater, "", "/100", 1);
+                                            animateProgress(progressXP, progressXP.getProgress(), player.getActivePlant().getHarvestXP(), txtXP, "", "XP", 1);
+                                        }
+                                    });
+
+                            usersRef.document(uid)
+                                    .collection(FireStoreReferences.PLANT_COLLECTION)
+                                    .get()
+                                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                                        for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                            String plantName = doc.getString("plantName");
+                                            int plantCurrentXP =  Objects.requireNonNull(doc.getLong("currentXP")).intValue();
+                                            boolean plantIsLocked = Boolean.TRUE.equals(doc.getBoolean("isLocked"));
+
+                                            // Update the corresponding object in the list
+                                            for (PlantModel plant : plantData) {
+                                                if (plant.getName().equals(plantName)) {
+                                                    plant.setCurrentXP(plantCurrentXP);
+                                                    plant.setLocked(plantIsLocked);
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        System.out.println("test");
+                                    });
+                        }
+                    });
+
+        }
 
         ArrayList<Integer> lvls = new ArrayList<>();
 

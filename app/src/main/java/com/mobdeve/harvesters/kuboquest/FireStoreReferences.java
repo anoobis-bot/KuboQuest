@@ -10,6 +10,7 @@ public class FireStoreReferences {
     public final static String USERNAME_FIELD = "username";
     public final static String TOTALENERGYSAVED_FIELD = "totalEnergySaved";
     public final static String ACTIVEPLANT_FIELD = "activePlant";
+    public final static String WATERLEVEL_FIELD = "waterLevel";
 
     //task fields
     public final static String TASKNAME_FIELD = "taskName";

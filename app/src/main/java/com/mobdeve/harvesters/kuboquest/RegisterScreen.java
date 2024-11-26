@@ -105,7 +105,7 @@ public class RegisterScreen extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Registered successfully! Write to FireStore and go to log in page.
+                                    // Registered successfully! Write to FireStore and go to login page.
 
                                     Toast.makeText(RegisterScreen.this, "Success.", Toast.LENGTH_SHORT).show();
 
@@ -116,6 +116,7 @@ public class RegisterScreen extends AppCompatActivity {
 
                                         userData.put(FireStoreReferences.USERNAME_FIELD, username.getText().toString());
                                         userData.put(FireStoreReferences.TOTALENERGYSAVED_FIELD, 0);
+                                        userData.put(FireStoreReferences.WATERLEVEL_FIELD, 50);
                                         userData.put(FireStoreReferences.ACTIVEPLANT_FIELD, 0);
 
                                         db.collection(FireStoreReferences.USER_COLLECTION).document(uid).set(userData);

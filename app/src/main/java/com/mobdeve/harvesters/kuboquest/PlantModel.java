@@ -24,7 +24,7 @@ public class PlantModel {
 
         // dummy value
         this.currentXP = 100;
-        this.isLocked = false;
+        this.isLocked = true;
         this.requiredEnergy = 10;
 
         this.iconResource = iconResource;
@@ -68,6 +68,14 @@ public class PlantModel {
 
     public int getCurrentXP() {
         return currentXP;
+    }
+
+    public void setCurrentXP(int currentXP) {
+        this.currentXP = currentXP;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 
     public void incrementXP(int value) {
