@@ -144,6 +144,8 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 PlayerModel player = PlayerModel.getInstance();
                 String frequency = filteredTaskList.get(holder.getAdapterPosition()).getTaskFrequency();
                 String difficulty = filteredTaskList.get(holder.getAdapterPosition()).getTaskDifficulty();
+                int origXP = player.getActivePlant().getCurrentXP();
+                int origWater = player.getSoilWater();
                 player.getActivePlant().incrementXP(GainDebuffData.getXPGain(frequency, difficulty));
                 player.incrementWater(GainDebuffData.getWaterGain(frequency, difficulty));
 
@@ -174,9 +176,9 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 }
 
 //                progress(GainDebuffData.getXPGain(frequency, difficulty));
-                TaskList.updateProgressBar(progressXP, textXP, player.getActivePlant().getHarvestXP(),
+                TaskList.updateProgressBar(progressXP, textXP, origXP, player.getActivePlant().getHarvestXP(),
                         GainDebuffData.getXPGain(frequency, difficulty), "XP");
-                TaskList.updateProgressBar(progressWater, textWater, 100,
+                TaskList.updateProgressBar(progressWater, textWater, origWater,100,
                         GainDebuffData.getWaterGain(frequency, difficulty), "/100");
                 TaskList.updatePlantImgTxt(txtLevel, imgPlant);
 
