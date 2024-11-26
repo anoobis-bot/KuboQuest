@@ -43,10 +43,16 @@ public class PlantData {
                 int sproutXP = Integer.parseInt(jsonObject.getString("sproutXP"));
                 int grownXP = Integer.parseInt(jsonObject.getString("grownXP"));
                 int harvestXP = Integer.parseInt(jsonObject.getString("harvestXP"));
-                int iconResource = context.getResources().getIdentifier("ic_tomato",
+                int iconResource = context.getResources().getIdentifier(jsonObject.getString("icon"),
+                        "drawable", context.getPackageName());
+                int seedResource = context.getResources().getIdentifier(jsonObject.getString("level_seed"),
+                        "drawable", context.getPackageName());
+                int sproutResource = context.getResources().getIdentifier(jsonObject.getString("level_sprout"),
+                        "drawable", context.getPackageName());
+                int grownResource = context.getResources().getIdentifier(jsonObject.getString("level_grown"),
                         "drawable", context.getPackageName());
                 plantData.add(new PlantModel(name, description, rarity, sproutXP, grownXP, harvestXP,
-                        iconResource));
+                        iconResource, seedResource, sproutResource, grownResource));
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();

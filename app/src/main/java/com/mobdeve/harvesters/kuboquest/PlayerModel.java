@@ -44,4 +44,8 @@ public class PlayerModel {
     public PlantModel getActivePlant () {
         return this.activePlant;
     }
+
+    public void incrementWater(int value) {
+        this.soilWater = this.soilWater +  value;
+    }
 }

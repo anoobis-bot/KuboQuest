@@ -3,6 +3,7 @@ package com.mobdeve.harvesters.kuboquest;
 import static com.mobdeve.harvesters.kuboquest.PlantData.plantData;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -181,6 +182,9 @@ public class TaskList extends AppCompatActivity {
         txtWater = findViewById(R.id.txtWater);
         progressXP = findViewById(R.id.progressXP);
         txtXP = findViewById(R.id.txtXP);
+        TextView txtPlantName = findViewById(R.id.txtPlantName);
+        TextView txtLevel = findViewById(R.id.txtLevel);
+        ImageView imgPlant = findViewById(R.id.imgPlant);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -195,16 +199,17 @@ public class TaskList extends AppCompatActivity {
             //set all the data of the user
             setupData();
 
-            adapter1 =  new TaskList_RecyclerViewAdapter(this,
-                    taskModelList, "Daily", progressXP, txtXP);
-
             adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
                     playerLevels, plantSprites);
+
+            adapter1 =  new TaskList_RecyclerViewAdapter(this,
+                    taskModelList, "Daily", progressXP, txtXP, progressWater, txtWater,
+                    txtLevel, imgPlant, adapter2);
 
             loadUserDataFromDB();
         }
 
-        PlayerModel.initialize(PlantData.findPlantByName("tomato"));
+        PlayerModel.initialize(PlantData.findPlantByName("Tomato"));
         player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);
@@ -243,7 +248,6 @@ public class TaskList extends AppCompatActivity {
         });
 
         showingTask = true;
-        ImageView imgPlant = findViewById(R.id.imgPlant);
         imgPlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -263,6 +267,12 @@ public class TaskList extends AppCompatActivity {
                 showingTask = !showingTask;
             }
         });
+
+        txtPlantName.setText(player.getActivePlant().getName());
+        updatePlantImgTxt(txtLevel, imgPlant);
+
+        ImageView imgFruit = findViewById(R.id.imgFruit);
+        imgFruit.setImageResource(player.getActivePlant().getIconResource());
 
         ImageView bookIcon = findViewById(R.id.imageView8);
         bookIcon.setOnClickListener(new View.OnClickListener() {
@@ -355,39 +365,111 @@ public class TaskList extends AppCompatActivity {
 
     private void animateProgress(ProgressBar progressBar, int currentProgress, int maxProgress,
                                  TextView progressText, String pre, String post, int multiplier) {
-        // Create an ObjectAnimator to animate progress from 0 to the desired value
-        int progressNorm = (int)((float)currentProgress/maxProgress * 100);
-        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, progressNorm);
-        animation.setDuration(1500); // Set the duration (1.5 seconds)
-        animation.start();
+//        // Create an ObjectAnimator to animate progress from 0 to the desired value
+//        int progressNorm = (int)((float)currentProgress/maxProgress * 100);
+//        ObjectAnimator animation = ObjectAnimator.ofInt(progressBar, "progress", 0, progressNorm);
+//        animation.setDuration(1500); // Set the duration (1.5 seconds)
+//        animation.start();
+//
+//        // update the text dynamically during the animation
+//        animation.addUpdateListener(animator -> {
+//            int animatedValue = (int) animator.getAnimatedValue();
+//            animatedValue = (int)((float)animatedValue / progressBar.getMax() * maxProgress);
+//            progressText.setText(pre + animatedValue + post);
+//        });
 
-        // update the text dynamically during the animation
+        // Calculate progressNorm as a float
+        float progressNorm = (float) currentProgress / maxProgress * 100;
+
+        // Create a ValueAnimator to animate between 0 and progressNorm
+        ValueAnimator animation = ValueAnimator.ofFloat(0f, progressNorm);
+        animation.setDuration(1500); // Set the duration (1.5 seconds)
+
+        // Add an update listener to update the progress and text dynamically
         animation.addUpdateListener(animator -> {
-            int animatedValue = (int) animator.getAnimatedValue();
-            animatedValue = (int)((float)animatedValue / progressBar.getMax() * maxProgress);
-            progressText.setText(pre + animatedValue + post);
+            float animatedValue = (float) animator.getAnimatedValue(); // Get the current animated value
+
+            // Update the ProgressBar's progress (convert to int)
+            progressBar.setProgress(Math.round(animatedValue));
+
+            // Calculate the corresponding progress relative to maxProgress
+            int calculatedProgress = Math.round(animatedValue / 100 * maxProgress);
+
+            // Update the progress text
+            progressText.setText(pre + calculatedProgress + post);
         });
+
+// Start the animation
+        animation.start();
 
 
     }
 
-    public static void updateXPProgress(ProgressBar progressXP, TextView txtXP, int increment) {
-        // Create an ObjectAnimator to animate progress from 0 to the desired value
-        int currentProgress = progressXP.getProgress();
-        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP();
-        float val = ((float)increment / maxProgress) * 100;
-        int addedProgress = (int)(((float)increment / maxProgress) * 100);
+    public static void updateProgressBar(ProgressBar progressXP, TextView txtXP, int maxProgress, int increment, String postText) {
+//        // Create an ObjectAnimator to animate progress from 0 to the desired value
+//        int currentProgress = progressXP.getProgress();
+//        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP();
+//        float val = ((float)increment / maxProgress) * 100;
+//        int addedProgress = (int)(((float)increment / maxProgress) * 100);
+//
+//        ObjectAnimator animation = ObjectAnimator.ofInt(progressXP, "progress", currentProgress, currentProgress + addedProgress);
+//        animation.setDuration(500); // Set the duration (.5 seconds)
+//        animation.start();
+//
+//        // update the text dynamically during the animation
+//        animation.addUpdateListener(animator -> {
+//            int animatedValue = (int) animator.getAnimatedValue();
+//            animatedValue = (int)((float)animatedValue / progressXP.getMax() * maxProgress);
+//            txtXP.setText(animatedValue + "XP");
+//        });
 
-        ObjectAnimator animation = ObjectAnimator.ofInt(progressXP, "progress", currentProgress, currentProgress + addedProgress);
-        animation.setDuration(500); // Set the duration (.5 seconds)
-        animation.start();
+        int currentProgress = progressXP.getProgress(); // Current progress of the ProgressBar
+//        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP(); // Maximum progress value
+        float val = ((float) increment / maxProgress) * 100; // Calculate normalized increment
+        float targetProgress = currentProgress + val; // Target progress as a float
 
-        // update the text dynamically during the animation
+        // Create a ValueAnimator to animate between the current progress and target progress
+        ValueAnimator animation = ValueAnimator.ofFloat(currentProgress, targetProgress);
+        animation.setDuration(500); // Set the duration (0.5 seconds)
+
+        // Add an update listener to dynamically update the progress and text
         animation.addUpdateListener(animator -> {
-            int animatedValue = (int) animator.getAnimatedValue();
-            animatedValue = (int)((float)animatedValue / progressXP.getMax() * maxProgress);
-            txtXP.setText(animatedValue + "XP");
+            float animatedValue = (float) animator.getAnimatedValue(); // Get the animated value
+
+            // Update the ProgressBar progress (convert to int for ProgressBar)
+            progressXP.setProgress(Math.round(animatedValue));
+
+            // Calculate the XP value corresponding to the current progress
+            int calculatedXP = Math.round(animatedValue / 100 * maxProgress);
+
+            // Update the TextView to display the current XP
+            txtXP.setText(calculatedXP + postText);
         });
+
+        // Start the animation
+        animation.start();
+    }
+
+    public static void updatePlantImgTxt (TextView txtLevel, ImageView imgPlant) {
+        PlayerModel player = PlayerModel.getInstance();
+        switch (player.getActivePlant().getStage()) {
+            case SEED:
+                txtLevel.setText("Seed");
+                imgPlant.setImageResource(player.getActivePlant().getSeedResource());
+                break;
+            case SPROUT:
+                txtLevel.setText("Sprout");
+                imgPlant.setImageResource(player.getActivePlant().getSproutResource());
+                break;
+            case GROWN:
+                txtLevel.setText("Grown");
+                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
+                break;
+            case HARVEST:
+                txtLevel.setText("Ready to Harvest");
+                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
+                break;
+        }
     }
 
     private void showLogoutConfirm(){
@@ -438,7 +520,7 @@ public class TaskList extends AppCompatActivity {
                                         doc.getString("taskDesc"),
                                         taskStartDate,
                                         doc.getString("taskFrequency"),
-                                        doc.getString("taskDiffulty"),
+                                        doc.getString("taskDifficulty"),
                                         Boolean.TRUE.equals(doc.getBoolean("isDone"))
                                 );
 

@@ -76,8 +76,11 @@
                             android:id="@+id/plantName1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:ellipsize="end"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="center"
+                            android:maxWidth="90dp"
+                            android:maxLines="1"
                             android:text="Tomato"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -117,8 +120,11 @@
                             android:id="@+id/plantName2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:ellipsize="end"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="center"
+                            android:maxWidth="90dp"
+                            android:maxLines="1"
                             android:text="Lima Beans"
                             android:textSize="14sp" />
                     </LinearLayout>
@@ -158,8 +164,11 @@
                             android:id="@+id/plantName3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:ellipsize="end"
                             android:fontFamily="@font/poppins_medium"
                             android:gravity="center"
+                            android:maxWidth="90dp"
+                            android:maxLines="1"
                             android:text="Winter Melon"
                             android:textSize="14sp" />
                     </LinearLayout>

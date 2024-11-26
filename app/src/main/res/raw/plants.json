@@ -6,6 +6,9 @@
     "harvestXP": "500",
     "rarity": "Common",
     "icon": "ic_sesame",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_sesame",
     "description": "Sesame seeds are one of the oldest oilseed crops, cultivated over 3,000 years ago! They’re incredibly drought-resistant, perfect for warm climates."
   },
   {
@@ -14,6 +17,10 @@
     "grownXP": "300",
     "harvestXP": "500",
     "rarity": "Common",
+    "icon": "ic_wintermelon",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_wintermelon",
     "description": "Despite its name, winter melon grows in warm seasons. It’s a staple in Asian cuisine and can grow up to 50 pounds!"
   },
   {
@@ -22,6 +29,10 @@
     "grownXP": "300",
     "harvestXP": "500",
     "rarity": "Common",
+    "icon": "ic_bottle",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_bottle",
     "description": "Bottle gourd can be used as both food and a container when dried. In ancient times, it was used as a water bottle!"
   },
   {
@@ -30,6 +41,10 @@
     "grownXP": "300",
     "harvestXP": "500",
     "rarity": "Common",
+    "icon": "ic_sponge",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_sponge",
     "description": "Sponge gourds are also known as luffas. When fully mature, they make great natural sponges for exfoliating skin."
   },
   {
@@ -38,6 +53,10 @@
     "grownXP": "300",
     "harvestXP": "500",
     "rarity": "Common",
+    "icon": "ic_squash",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_squash",
     "description": "Squash is one of the oldest cultivated crops in the Americas, dating back over 10,000 years!"
   },
   {
@@ -46,6 +65,10 @@
     "grownXP": "300",
     "harvestXP": "500",
     "rarity": "Common",
+    "icon": "ic_tomato",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_tomato",
     "description": "Tomatoes are a great source of vitamins A, C, and K. They are easy to grow and require full sunlight for optimal growth."
   },
   {
@@ -54,6 +77,10 @@
     "grownXP": "300",
     "harvestXP": "500",
     "rarity": "Common",
+    "icon": "ic_eggplant",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_eggplant",
     "description": "Eggplants belong to the same family as tomatoes and potatoes. They were once called \"mad apples\" in Europe!"
   },
   {
@@ -62,6 +89,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_lima",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_lima",
     "description": "Known as “butter beans” for their creamy texture, lima beans were cultivated in Peru over 4,000 years ago."
   },
   {
@@ -70,6 +101,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_peanut",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_peanut",
     "description": "Peanuts aren’t actually nuts; they’re legumes! They grow underground and are a rich source of protein."
   },
   {
@@ -78,6 +113,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_hyacinth",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hyacinth",
     "description": "This bean has a beautiful purple flower, often used as an ornamental plant. It’s both pretty and edible!"
   },
   {
@@ -86,6 +125,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_string",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_string",
     "description": "Also called “green beans,” these are harvested before their seeds fully develop, making them tender and delicious."
   },
   {
@@ -94,6 +137,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_winged",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_winged",
     "description": "Winged beans are entirely edible, from leaves to roots, making them incredibly versatile."
   },
   {
@@ -102,6 +149,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_jicama",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_jicama",
     "description": "Often called the \"Mexican turnip,\" jicama is crunchy and sweet, a perfect addition to salads."
   },
   {
@@ -110,6 +161,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_radish",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_radish",
     "description": "Radishes grow super fast, often ready to harvest in just 3-4 weeks. Perfect for impatient gardeners!"
   },
   {
@@ -118,6 +173,10 @@
     "grownXP": "400",
     "harvestXP": "600",
     "rarity": "Uncommon",
+    "icon": "ic_ginger",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_ginger",
     "description": "Known for its spicy, aromatic flavor, ginger is one of the healthiest spices, packed with anti-inflammatory properties."
   },
   {
@@ -126,6 +185,10 @@
     "grownXP": "500",
     "harvestXP": "700",
     "rarity": "Rare",
+    "icon": "ic_mustard",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_mustard",
     "description": "Mustard greens pack a punch! They are spicy and peppery, with more vitamin C than oranges."
   },
   {
@@ -134,6 +197,10 @@
     "grownXP": "500",
     "harvestXP": "700",
     "rarity": "Rare",
+    "icon": "ic_onion",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_onion",
     "description": "Onions are ancient! They were eaten by Egyptian pyramid builders for strength and endurance."
   },
   {
@@ -142,6 +209,10 @@
     "grownXP": "500",
     "harvestXP": "700",
     "rarity": "Rare",
+    "icon": "ic_garlic",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_garlic",
     "description": "Garlic is a natural antibiotic and immune booster. Ancient Greeks used it as a performance enhancer in the original Olympic games!"
   },
   {
@@ -150,6 +221,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_sesame",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_sesame",
     "description": "This unique sesame seed can produce oil with enhanced health benefits and is highly drought-resistant."
   },
   {
@@ -158,6 +233,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_wintermelon",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_wintermelon",
     "description": "This super melon is packed with antioxidants and is known to last for months after harvesting."
   },
   {
@@ -166,6 +245,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_bottle",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_bottle",
     "description": "Known for its versatility, it can be used as a musical instrument when dried!"
   },
   {
@@ -174,6 +257,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_sponge",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_sponge",
     "description": "This hybrid produces durable luffas, perfect for eco-friendly skincare routines."
   },
   {
@@ -182,6 +269,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_squash",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_squash",
     "description": "Hybrid squash varieties have extended shelf lives and are ideal for both culinary and ornamental uses."
   },
   {
@@ -190,6 +281,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_tomato",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_tomato",
     "description": "This tomato variety has extra resistance to pests and diseases, making it a top pick for sustainable gardening."
   },
   {
@@ -198,6 +293,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_eggplant",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_eggplant",
     "description": "Known for its striking color and high nutrient content, this eggplant is packed with antioxidants."
   },
   {
@@ -206,6 +305,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_lima",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_lima",
     "description": "These beans are larger, creamier, and loaded with protein, ideal for hearty dishes."
   },
   {
@@ -214,6 +317,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_peanut",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_peanut",
     "description": "This peanut variety yields extra-large nuts with a rich flavor, perfect for peanut butter lovers."
   },
   {
@@ -222,6 +329,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_hyacinth",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_hyacinth",
     "description": "Known for its vibrant color, this bean variety is both a beauty and a powerhouse of nutrients."
   },
   {
@@ -230,6 +341,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_string",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_string",
     "description": "These beans grow in longer pods and are packed with vitamins A, C, and K."
   },
   {
@@ -238,6 +353,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_winged",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_field_sprout",
+    "level_grown":  "lvl_grown_hybrid_winged",
     "description": "This rare variety has an even higher protein content, perfect for vegetarian diets."
   },
   {
@@ -246,6 +365,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_jicama",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_jicama",
     "description": "This hybrid has a sweeter taste and is packed with fiber, making it a perfect low-calorie snack."
   },
   {
@@ -254,6 +377,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_radish",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_radish",
     "description": "Known for its vibrant color, this radish is both beautiful and packed with antioxidants."
   },
   {
@@ -262,6 +389,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_ginger",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_ginger",
     "description": "This variety is more aromatic and spicier, ideal for culinary uses and health benefits."
   },
   {
@@ -270,6 +401,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_mustard",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_mustard",
     "description": "With a stronger flavor, this mustard green packs an extra punch of vitamins and minerals."
   },
   {
@@ -278,6 +413,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_onion",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_onion",
     "description": "Known for its unique flavor, this onion variety brings extra zest to any dish."
   },
   {
@@ -286,6 +425,10 @@
     "grownXP": "650",
     "harvestXP": "800",
     "rarity": "Legendary",
+    "icon": "ic_hybrid_garlic",
+    "level_seed": "lvl_seed",
+    "level_sprout": "lvl_root_sprout",
+    "level_grown":  "lvl_grown_hybrid_garlic",
     "description": "This hybrid garlic is more potent and has higher allicin content, perfect for boosting immunity."
   }
 ]
