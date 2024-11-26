@@ -14,9 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlantData {
-    static final List<PlantModel> plantData = new ArrayList<>();
+    private static PlantData sharedInstance = null;
 
-    PlantData(Context context) {
+    public static final List<PlantModel> plantData = new ArrayList<>();
+
+    public static void initialize(Context context) {
+        if (sharedInstance == null) {
+            sharedInstance = new PlantData(context);
+        }
+    }
+
+    private PlantData(Context context) {
         try {
             InputStream inputStream = context.getResources().openRawResource(R.raw.plants);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -47,7 +55,7 @@ public class PlantData {
         return plantData;
     }
 
-    public PlantModel findPlantByName(String name) {
+    public static PlantModel findPlantByName(String name) {
         for (PlantModel plant : plantData) {
             if (plant.getName().equalsIgnoreCase(name)) {
                 return plant; // Found the matching plant

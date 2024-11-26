@@ -22,7 +22,7 @@ public class PlayerModel {
     private PlayerModel(PlantModel activePlant) {
         this.activePlant = activePlant;
         this.energy = 8;
-        this.soilWater = 70;
+        this.soilWater = 100;
     }
 
     public void setActivePlant(PlantModel activePlant) {

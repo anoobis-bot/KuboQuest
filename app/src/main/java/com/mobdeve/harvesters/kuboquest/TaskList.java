@@ -184,14 +184,14 @@ public class TaskList extends AppCompatActivity {
             loadUserDataFromDB();
         }
 
-        PlantData plantData = new PlantData(this);
-        List<PlantModel> plantDataList = plantData.getPlantData();
+//        PlantData plantData = new PlantData(this);
+        List<PlantModel> plantDataList = PlantData.plantData;
 
         for (PlantModel plant : plantDataList) {
             System.out.println(plant.getName());
         }
 
-        PlayerModel.initialize(plantData.findPlantByName("tomato"));
+        PlayerModel.initialize(PlantData.findPlantByName("tomato"));
         PlayerModel player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);

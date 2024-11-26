@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
         checkNotificationPermission();
 
+        PlantData.initialize(this);
+
         Button btnProceed = findViewById(R.id.btnProceed);
         btnProceed.setOnClickListener(new View.OnClickListener() {
             @Override
