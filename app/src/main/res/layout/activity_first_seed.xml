@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Congratulations on your first seed!"
+        android:text="Congratulations on your new seed!"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="18sp" />
