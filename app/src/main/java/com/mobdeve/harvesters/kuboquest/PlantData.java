@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlantData {
-    static final List<PlantDataList> plantData = new ArrayList<>();
+    static final List<PlantModel> plantData = new ArrayList<>();
 
     PlantData(Context context) {
         try {
@@ -35,56 +35,15 @@ public class PlantData {
                 int sproutXP = Integer.parseInt(jsonObject.getString("sproutXP"));
                 int grownXP = Integer.parseInt(jsonObject.getString("grownXP"));
                 int harvestXP = Integer.parseInt(jsonObject.getString("harvestXP"));
-                plantData.add(new PlantDataList(name, description, rarity, sproutXP, grownXP, harvestXP));
+                plantData.add(new PlantModel(name, description, rarity, sproutXP, grownXP, harvestXP,
+                        0));
             }
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
 
-    public List<PlantDataList> getPlantData() {
+    public List<PlantModel> getPlantData() {
         return plantData;
-    }
-
-    public static class PlantDataList {
-        private final String name;
-        private final String description;
-        private final String rarity;
-        private final int sproutXP;
-        private final int grownXP;
-        private final int harvestXP;
-
-        public PlantDataList(String name, String description, String rarity, int sproutXP, int grownXP, int harvestXP) {
-            this.name = name;
-            this.description = description;
-            this.rarity = rarity;
-            this.sproutXP = sproutXP;
-            this.grownXP = grownXP;
-            this.harvestXP = harvestXP;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getDescription() {
-            return description;
-        }
-
-        public int getSproutXP() {
-            return sproutXP;
-        }
-
-        public int getGrownXP() {
-            return grownXP;
-        }
-
-        public int getHarvestXP() {
-            return harvestXP;
-        }
-
-        public String getRarity() {
-            return rarity;
-        }
     }
 }

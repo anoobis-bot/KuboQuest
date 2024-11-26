@@ -1,19 +1,21 @@
 package com.mobdeve.harvesters.kuboquest;
 
 public class PlayerLevelModel {
-    protected int playerLevel;
-    protected int plantSprite;
+    protected PlantModel activePlant;
+    protected int energy;
+    protected int soilWater;
 
-    public PlayerLevelModel(int playerLevel, int plantSprite) {
-        this.playerLevel = playerLevel;
-        this.plantSprite = plantSprite;
+    public PlayerLevelModel() {
+        this.activePlant = null;
+        this.energy = 8;
+        this.soilWater = 70;
     }
 
-    public int getPlayerLevel() {
-        return playerLevel;
+    public void setActivePlant(PlantModel activePlant) {
+        this.activePlant = activePlant;
     }
 
-    public int getPlantSprite() {
-        return plantSprite;
+    public PlantModel getActivePlant () {
+        return this.activePlant;
     }
 }

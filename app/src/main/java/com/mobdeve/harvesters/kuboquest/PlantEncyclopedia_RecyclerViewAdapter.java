@@ -35,38 +35,38 @@ public class PlantEncyclopedia_RecyclerViewAdapter extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(@NonNull PlantEncyclopedia_RecyclerViewAdapter.MyViewHolder holder, int position) {
-        if (plantList.get(position*3).isLocked)
+        if (plantList.get(position*3).isLocked())
         {
             holder.plantImg1.setImageResource(R.drawable.sprite_plant_locked);
         }
         else {
-            holder.plantImg1.setImageResource(plantList.get(position*3).getImageResource());
+            holder.plantImg1.setImageResource(plantList.get(position*3).getIconResource());
         }
-        holder.plantName1.setText(plantList.get(position*3).getPlantName());
+        holder.plantName1.setText(plantList.get(position*3).getName());
         holder.plantBox1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showPlantDetails(plantList.get(holder.getAdapterPosition()*3).plantName, plantList.get(holder.getAdapterPosition()*3).getPlantDesc(),
-                        plantList.get(holder.getAdapterPosition()*3).getImageResource(), plantList.get(holder.getAdapterPosition()*3).isLocked(),
+                showPlantDetails(plantList.get(holder.getAdapterPosition()*3).getName(), plantList.get(holder.getAdapterPosition()*3).getDescription(),
+                        plantList.get(holder.getAdapterPosition()*3).getIconResource(), plantList.get(holder.getAdapterPosition()*3).isLocked(),
                         plantList.get(holder.getAdapterPosition()*3).getRequiredEnergy());
             }
         });
 
         if (position*3 + 1 < plantList.size())
         {
-            if (plantList.get(position*3 + 1).isLocked)
+            if (plantList.get(position*3 + 1).isLocked())
             {
                 holder.plantImg2.setImageResource(R.drawable.sprite_plant_locked);
             }
             else {
-                holder.plantImg2.setImageResource(plantList.get(position*3 + 1).getImageResource());
+                holder.plantImg2.setImageResource(plantList.get(position*3 + 1).getIconResource());
             }
-            holder.plantName2.setText(plantList.get(position*3 + 1).getPlantName());
+            holder.plantName2.setText(plantList.get(position*3 + 1).getName());
             holder.plantBox2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    showPlantDetails(plantList.get(holder.getAdapterPosition()*3 + 1).plantName, plantList.get(holder.getAdapterPosition()*3 + 1).getPlantDesc(),
-                            plantList.get(holder.getAdapterPosition()*3 + 1).getImageResource(), plantList.get(holder.getAdapterPosition()*3 + 1).isLocked(),
+                    showPlantDetails(plantList.get(holder.getAdapterPosition()*3 + 1).getName(), plantList.get(holder.getAdapterPosition()*3 + 1).getDescription(),
+                            plantList.get(holder.getAdapterPosition()*3 + 1).getIconResource(), plantList.get(holder.getAdapterPosition()*3 + 1).isLocked(),
                             plantList.get(holder.getAdapterPosition()*3 + 1).getRequiredEnergy());
                 }
             });
@@ -78,19 +78,19 @@ public class PlantEncyclopedia_RecyclerViewAdapter extends RecyclerView.Adapter<
 
         if (position*3 + 2 < plantList.size())
         {
-            if (plantList.get(position*3 + 2).isLocked)
+            if (plantList.get(position*3 + 2).isLocked())
             {
                 holder.plantImg3.setImageResource(R.drawable.sprite_plant_locked);
             }
             else {
-                holder.plantImg3.setImageResource(plantList.get(position*3 + 1).getImageResource());
+                holder.plantImg3.setImageResource(plantList.get(position*3 + 1).getIconResource());
             }
-            holder.plantName3.setText(plantList.get(position*3 + 2).getPlantName());
+            holder.plantName3.setText(plantList.get(position*3 + 2).getName());
             holder.plantBox3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    showPlantDetails(plantList.get(holder.getAdapterPosition()*3 + 2).plantName, plantList.get(holder.getAdapterPosition()*3 + 2).getPlantDesc(),
-                            plantList.get(holder.getAdapterPosition()*3 + 2).getImageResource(), plantList.get(holder.getAdapterPosition()*3 + 2).isLocked(),
+                    showPlantDetails(plantList.get(holder.getAdapterPosition()*3 + 2).getName(), plantList.get(holder.getAdapterPosition()*3 + 2).getDescription(),
+                            plantList.get(holder.getAdapterPosition()*3 + 2).getIconResource(), plantList.get(holder.getAdapterPosition()*3 + 2).isLocked(),
                             plantList.get(holder.getAdapterPosition()*3 + 2).getRequiredEnergy());
                 }
             });

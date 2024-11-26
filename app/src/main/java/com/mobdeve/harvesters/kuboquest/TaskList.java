@@ -180,9 +180,9 @@ public class TaskList extends AppCompatActivity {
         }
 
         PlantData plantData = new PlantData(this);
-        List<PlantData.PlantDataList> plantDataList = plantData.getPlantData();
+        List<PlantModel> plantDataList = plantData.getPlantData();
 
-        for (PlantData.PlantDataList plant : plantDataList) {
+        for (PlantModel plant : plantDataList) {
             System.out.println(plant.getName());
         }
 

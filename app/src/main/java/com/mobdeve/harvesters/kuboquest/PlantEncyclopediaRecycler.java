@@ -38,15 +38,15 @@ public class PlantEncyclopediaRecycler extends AppCompatActivity {
     }
 
     private void setupPlantList() {
-        plantList.add(new PlantModel("Tomato", "Tomatoes are a great source of vitamins A, C, and K. They are easy to grow and require full sunlight for optimal growth.",
-                false, R.drawable.fruit_tomato, 10));
-        plantList.add(new PlantModel("Sesame Seed", "Lorem Ipsum",
-                true, R.drawable.fruit_tomato, 10));
-        plantList.add(new PlantModel("Winter Melon", "Lorem Ipsum",
-                true, R.drawable.fruit_tomato, 10));
-        plantList.add(new PlantModel("Bottle Gourd", "Lorem Ipsum",
-                true, R.drawable.fruit_tomato, 10));
-        plantList.add(new PlantModel("Sponge Gourd", "Lorem Ipsum",
-                true, R.drawable.fruit_tomato, 10));
+//        plantList.add(new PlantModel("Tomato", "Tomatoes are a great source of vitamins A, C, and K. They are easy to grow and require full sunlight for optimal growth.",
+//                false, R.drawable.fruit_tomato, 10, 70));
+//        plantList.add(new PlantModel("Sesame Seed", "Lorem Ipsum",
+//                true, R.drawable.fruit_tomato, 10, 70));
+//        plantList.add(new PlantModel("Winter Melon", "Lorem Ipsum",
+//                true, R.drawable.fruit_tomato, 10, 70));
+//        plantList.add(new PlantModel("Bottle Gourd", "Lorem Ipsum",
+//                true, R.drawable.fruit_tomato, 10, 70));
+//        plantList.add(new PlantModel("Sponge Gourd", "Lorem Ipsum",
+//                true, R.drawable.fruit_tomato, 10, 70));
     }
 }
