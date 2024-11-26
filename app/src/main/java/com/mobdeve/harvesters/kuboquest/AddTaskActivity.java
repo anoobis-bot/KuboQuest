@@ -52,7 +52,6 @@ public class AddTaskActivity extends AppCompatActivity {
         difficultyChoices.add("Easy");
         difficultyChoices.add("Medium");
         difficultyChoices.add("Hard");
-        difficultyChoices.add("Extreme");
 
         ArrayAdapter<String> frequencyAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, frequencyChoices) {
