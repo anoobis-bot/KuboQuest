@@ -23,11 +23,13 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
     ProgressBar progressXP;
     TextView textXP;
+    ProgressBar progressWater;
+    TextView textWater;
     TextView txtLevel;
     ImageView imgPlant;
 
     public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList, String filterFreq,
-                                        ProgressBar progressBar, TextView textXP,
+                                        ProgressBar progressBar, TextView textXP, ProgressBar progressWater, TextView textWater,
                                         TextView txtLevel, ImageView imgPlant) {
         this.context = context;
         this.taskModelList = taskModelList;
@@ -36,6 +38,8 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
         this.progressXP = progressBar;
         this.textXP = textXP;
+        this.progressWater = progressWater;
+        this.textWater = textWater;
         this.txtLevel = txtLevel;
         this.imgPlant = imgPlant;
     }
@@ -105,9 +109,13 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 String frequency = filteredTaskList.get(holder.getAdapterPosition()).getTaskFrequency();
                 String difficulty = filteredTaskList.get(holder.getAdapterPosition()).getTaskDifficulty();
                 player.getActivePlant().incrementXP(GainDebuffData.getXPGain(frequency, difficulty));
+                player.incrementWater(GainDebuffData.getWaterGain(frequency, difficulty));
 
 //                progress(GainDebuffData.getXPGain(frequency, difficulty));
-                TaskList.updateXPProgress(progressXP, textXP, GainDebuffData.getXPGain(frequency, difficulty));
+                TaskList.updateProgressBar(progressXP, textXP, player.getActivePlant().getHarvestXP(),
+                        GainDebuffData.getXPGain(frequency, difficulty), "XP");
+                TaskList.updateProgressBar(progressWater, textWater, 100,
+                        GainDebuffData.getWaterGain(frequency, difficulty), "/100");
                 TaskList.updatePlantImgTxt(txtLevel, imgPlant);
             }
         });

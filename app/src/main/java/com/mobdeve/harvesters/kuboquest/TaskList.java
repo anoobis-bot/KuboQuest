@@ -1,6 +1,5 @@
 package com.mobdeve.harvesters.kuboquest;
 
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
@@ -27,20 +26,15 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.type.DateTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -180,7 +174,8 @@ public class TaskList extends AppCompatActivity {
             setupData();
 
             adapter1 =  new TaskList_RecyclerViewAdapter(this,
-                    taskModelList, "Daily", progressXP, txtXP, txtLevel, imgPlant);
+                    taskModelList, "Daily", progressXP, txtXP, progressWater, txtWater,
+                    txtLevel, imgPlant);
 
             adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
                     playerLevels, plantSprites);
@@ -341,7 +336,7 @@ public class TaskList extends AppCompatActivity {
 
     }
 
-    public static void updateXPProgress(ProgressBar progressXP, TextView txtXP, int increment) {
+    public static void updateProgressBar(ProgressBar progressXP, TextView txtXP, int maxProgress, int increment, String postText) {
 //        // Create an ObjectAnimator to animate progress from 0 to the desired value
 //        int currentProgress = progressXP.getProgress();
 //        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP();
@@ -360,7 +355,7 @@ public class TaskList extends AppCompatActivity {
 //        });
 
         int currentProgress = progressXP.getProgress(); // Current progress of the ProgressBar
-        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP(); // Maximum progress value
+//        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP(); // Maximum progress value
         float val = ((float) increment / maxProgress) * 100; // Calculate normalized increment
         float targetProgress = currentProgress + val; // Target progress as a float
 
@@ -379,7 +374,7 @@ public class TaskList extends AppCompatActivity {
             int calculatedXP = Math.round(animatedValue / 100 * maxProgress);
 
             // Update the TextView to display the current XP
-            txtXP.setText(calculatedXP + "XP");
+            txtXP.setText(calculatedXP + postText);
         });
 
         // Start the animation
