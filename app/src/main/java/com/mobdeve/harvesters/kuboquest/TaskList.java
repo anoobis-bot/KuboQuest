@@ -336,6 +336,7 @@ public class TaskList extends AppCompatActivity {
 
                                             // initialize all data in the UI
                                             PlayerModel.initialize(PlantData.findPlantByName(currentPlantName));
+                                            PlayerModel.getInstance().setActivePlant(PlantData.findPlantByName(currentPlantName));
                                             player = PlayerModel.getInstance();
                                             player.setSoilWater(currentWaterLevel);
                                             player.getActivePlant().setCurrentXP(currentPlantXP);
@@ -431,7 +432,7 @@ public class TaskList extends AppCompatActivity {
 
     }
 
-    public static void updateProgressBar(ProgressBar progressXP, TextView txtXP, int maxProgress, int increment, String postText) {
+    public static void updateProgressBar(ProgressBar progressXP, TextView txtXP, int origProgress, int maxProgress, int increment, String postText) {
 //        // Create an ObjectAnimator to animate progress from 0 to the desired value
 //        int currentProgress = progressXP.getProgress();
 //        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP();
@@ -449,13 +450,14 @@ public class TaskList extends AppCompatActivity {
 //            txtXP.setText(animatedValue + "XP");
 //        });
 
-        int currentProgress = progressXP.getProgress(); // Current progress of the ProgressBar
+//        int currentProgress = progressXP.getProgress(); // Current progress of the ProgressBar
+        double currentProgress = origProgress / (double)maxProgress * 100;
 //        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP(); // Maximum progress value
-        float val = ((float) increment / maxProgress) * 100; // Calculate normalized increment
-        float targetProgress = currentProgress + val; // Target progress as a float
+        double val = ((double) increment / maxProgress) * (double)100; // Calculate normalized increment
+        double targetProgress = currentProgress + val; // Target progress as a float
 
         // Create a ValueAnimator to animate between the current progress and target progress
-        ValueAnimator animation = ValueAnimator.ofFloat(currentProgress, targetProgress);
+        ValueAnimator animation = ValueAnimator.ofFloat((float)currentProgress, (float)targetProgress);
         animation.setDuration(500); // Set the duration (0.5 seconds)
 
         // Add an update listener to dynamically update the progress and text
