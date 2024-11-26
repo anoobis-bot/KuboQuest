@@ -1,5 +1,8 @@
 package com.mobdeve.harvesters.kuboquest;
 
+import static com.mobdeve.harvesters.kuboquest.PlantData.plantData;
+
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.Dialog;
@@ -26,21 +29,27 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.type.DateTime;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class TaskList extends AppCompatActivity {
 
@@ -51,6 +60,26 @@ public class TaskList extends AppCompatActivity {
     CollectionReference tasksRef;
     Map<String, Object> taskData = new HashMap<>();
     SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+
+    // UI DATA
+    PlayerModel player;
+    TextView txtWater;
+    ProgressBar progressWater;
+    TextView goalXP;
+    ProgressBar progressXP;
+    TextView txtXP;
+    TextView txtPlantName;
+    TextView txtLevel;
+    ImageView imgPlant;
+    ImageView imgFruit;
+
+    // DB variables
+    PlantModel currentPlant;
+    int currentPlantXP;
+    String currentPlantName;
+    String currentPlantID;
+    int currentWaterLevel;
+    int currentPlantLevel;
 
     boolean showingTask;
     ImageView bookIcon;
@@ -156,16 +185,19 @@ public class TaskList extends AppCompatActivity {
             return insets;
         });
 
-        ProgressBar progressWater = findViewById(R.id.progressWater);
-        TextView txtWater = findViewById(R.id.txtWater);
-        ProgressBar progressXP = findViewById(R.id.progressXP);
-        TextView txtXP = findViewById(R.id.txtXP);
-        TextView txtPlantName = findViewById(R.id.txtPlantName);
-        TextView txtLevel = findViewById(R.id.txtLevel);
-        ImageView imgPlant = findViewById(R.id.imgPlant);
+        progressWater = findViewById(R.id.progressWater);
+        txtWater = findViewById(R.id.txtWater);
+        progressXP = findViewById(R.id.progressXP);
+        txtXP = findViewById(R.id.txtXP);
+        goalXP = findViewById(R.id.txtGoal);
+        txtPlantName = findViewById(R.id.txtPlantName);
+        txtLevel = findViewById(R.id.txtLevel);
+        imgPlant = findViewById(R.id.imgPlant);
+        imgFruit = findViewById(R.id.imgFruit);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+        PlantData.initialize(this);
 
         if (currentUser == null) {
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -186,15 +218,6 @@ public class TaskList extends AppCompatActivity {
             loadUserDataFromDB();
         }
 
-//        PlantData plantData = new PlantData(this);
-        List<PlantModel> plantDataList = PlantData.plantData;
-
-        for (PlantModel plant : plantDataList) {
-            System.out.println(plant.getName());
-        }
-
-        PlayerModel.initialize(PlantData.findPlantByName("Hybrid Winter Melon"));
-        PlayerModel player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);
         imgSettings.setOnClickListener(new View.OnClickListener() {
@@ -213,11 +236,6 @@ public class TaskList extends AppCompatActivity {
         levelRecyclerView.setAdapter(adapter2);
         levelRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        TextView goalXP = findViewById(R.id.txtGoal);
-        goalXP.setText("Goal: " + player.getActivePlant().getHarvestXP() + "XP");
-        progressXP.setProgress(player.getActivePlant().getCurrentXP());
-        animateProgress(progressWater, progressWater.getProgress(), 100, txtWater, "", "/100", 1);
-        animateProgress(progressXP, progressXP.getProgress(), player.getActivePlant().getHarvestXP(), txtXP, "", "XP", 1);
 
         RadioGroup sortByButtons = findViewById(R.id.sortByButtons);
         sortByButtons.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -255,12 +273,6 @@ public class TaskList extends AppCompatActivity {
             }
         });
 
-        txtPlantName.setText(player.getActivePlant().getName());
-        updatePlantImgTxt(txtLevel, imgPlant);
-
-        ImageView imgFruit = findViewById(R.id.imgFruit);
-        imgFruit.setImageResource(player.getActivePlant().getIconResource());
-
         ImageView bookIcon = findViewById(R.id.imageView8);
         bookIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -283,7 +295,69 @@ public class TaskList extends AppCompatActivity {
     }
 
     private void setupData() {
-        playerLevel = 8;
+        if (currentUser != null) {
+            String uid = currentUser.getUid();
+
+            usersRef.document(uid)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            currentWaterLevel = Objects.requireNonNull(documentSnapshot.getLong("waterLevel")).intValue();
+                            currentPlantID = documentSnapshot.getString("activePlant");
+
+
+
+                            usersRef.document(uid)
+                                    .collection(FireStoreReferences.PLANT_COLLECTION)
+                                    .document(currentPlantID)
+                                    .get()
+                                    .addOnSuccessListener(documentSnapshot1 -> {
+                                        if (documentSnapshot1.exists()) {
+                                            currentPlantXP = Objects.requireNonNull(documentSnapshot1.getLong("currentXP")).intValue();
+                                            currentPlantName = documentSnapshot1.getString("plantName");
+
+                                            // initialize all data in the UI
+                                            PlayerModel.initialize(PlantData.findPlantByName(currentPlantName));
+                                            player = PlayerModel.getInstance();
+                                            player.setSoilWater(currentWaterLevel);
+                                            player.getActivePlant().setCurrentXP(currentPlantXP);
+                                            progressXP.setProgress(player.getActivePlant().getCurrentXP());
+                                            txtPlantName.setText(player.getActivePlant().getName());
+                                            updatePlantImgTxt(txtLevel, imgPlant);
+                                            imgFruit.setImageResource(player.getActivePlant().getIconResource());
+
+
+                                            goalXP.setText("Goal: " + player.getActivePlant().getHarvestXP() + "XP");
+
+                                            // animate after data is received from db
+                                            animateProgress(progressWater, player.getSoilWater(), 100, txtWater, "", "/100", 1);
+                                            animateProgress(progressXP, progressXP.getProgress(), player.getActivePlant().getHarvestXP(), txtXP, "", "XP", 1);
+                                        }
+                                    });
+
+                            usersRef.document(uid)
+                                    .collection(FireStoreReferences.PLANT_COLLECTION)
+                                    .get()
+                                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                                        for (DocumentSnapshot doc : queryDocumentSnapshots.getDocuments()) {
+                                            String plantName = doc.getString("plantName");
+                                            int plantCurrentXP =  Objects.requireNonNull(doc.getLong("currentXP")).intValue();
+                                            boolean plantIsLocked = Boolean.TRUE.equals(doc.getBoolean("isLocked"));
+
+                                            // Update the corresponding object in the list
+                                            for (PlantModel plant : plantData) {
+                                                if (plant.getName().equals(plantName)) {
+                                                    plant.setCurrentXP(plantCurrentXP);
+                                                    plant.setLocked(plantIsLocked);
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    });
+                        }
+                    });
+
+        }
 
         ArrayList<Integer> lvls = new ArrayList<>();
 

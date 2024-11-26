@@ -29,6 +29,18 @@ public class PlayerModel {
         this.activePlant = activePlant;
     }
 
+    public void setSoilWater(int soilWater) {
+        this.soilWater = soilWater;
+    }
+
+    public int getSoilWater() {
+        return soilWater;
+    }
+
+    public int getEnergy() {
+        return energy;
+    }
+
     public PlantModel getActivePlant () {
         return this.activePlant;
     }

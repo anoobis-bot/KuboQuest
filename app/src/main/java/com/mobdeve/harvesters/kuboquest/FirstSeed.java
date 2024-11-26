@@ -46,8 +46,9 @@ public class FirstSeed extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        PlantData.initialize(this);
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
         seedName = findViewById(R.id.seedName);
         seedImg = findViewById(R.id.seedImg);
         btnProceed = findViewById(R.id.btnProceed);
@@ -68,7 +69,7 @@ public class FirstSeed extends AppCompatActivity {
             String uid = currentUser.getUid();
 
             plantOwned.put(FireStoreReferences.PLANTNAME_FIELD, plant.getName());
-            plantOwned.put(FireStoreReferences.ISLOCKED_FIELD, true);
+            plantOwned.put(FireStoreReferences.ISLOCKED_FIELD, false);
             plantOwned.put(FireStoreReferences.CURRENTXP_FIELD, 0);
 
             usersRef.document(uid).collection(FireStoreReferences.PLANT_COLLECTION)
