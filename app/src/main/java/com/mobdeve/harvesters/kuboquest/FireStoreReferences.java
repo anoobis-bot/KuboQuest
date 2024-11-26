@@ -18,6 +18,7 @@ public class FireStoreReferences {
     public final static String TASKSTARTDATE_FIELD = "taskStartDate";
     public final static String TASKFREQUENCY_FIELD = "taskFrequency";
     public final static String TASKDIFFICULTY_FIELD = "taskDifficulty";
+    public final static String TASKISDONE_FIELD = "taskIsDone";
 
     //plant fields
     public final static String PLANTNAME_FIELD = "plantName";
