@@ -11,9 +11,14 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class AppLifecycleTracker implements LifecycleObserver {
     private final Context appContext; // Store the application context
     private static boolean isAppInForeground = false;
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
 
     public AppLifecycleTracker(Application application) {
         // Register the observer to track app lifecycle
@@ -32,7 +37,12 @@ public class AppLifecycleTracker implements LifecycleObserver {
     public void onEnterBackground() {
         isAppInForeground = false; // App is in the background
 
-        scheduleRepeatingAlarm(this.appContext);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            scheduleRepeatingAlarm(this.appContext);
+        }
     }
 
     public static boolean isAppInForeground() {
