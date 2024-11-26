@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,11 +20,18 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
     ArrayList<TaskModel> filteredTaskList;
     String filterFreq;
 
-    public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList, String filterFreq) {
+    ProgressBar progressXP;
+    TextView textXP;
+
+    public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList, String filterFreq,
+                                        ProgressBar progressBar, TextView textXP) {
         this.context = context;
         this.taskModelList = taskModelList;
         this.filteredTaskList = new ArrayList<>();
         this.filterFreq = filterFreq;
+
+        this.progressXP = progressBar;
+        this.textXP = textXP;
     }
 
     public void changeFilter(String filterFreq) {
@@ -86,8 +94,20 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 holder.checkBox.setEnabled(false);
                 holder.txtTaskName.setPaintFlags(holder.txtTaskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                 holder.txtTaskDesc.setPaintFlags(holder.txtTaskDesc.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                PlayerModel player = PlayerModel.getInstance();
+                String frequency = filteredTaskList.get(holder.getAdapterPosition()).getTaskFrequency();
+                String difficulty = filteredTaskList.get(holder.getAdapterPosition()).getTaskDifficulty();
+                player.getActivePlant().incrementXP(GainDebuffData.getXPGain(frequency, difficulty));
+
+                progress(GainDebuffData.getXPGain(frequency, difficulty));
             }
         });
+    }
+
+    public void progress(int increment)
+    {
+        TaskList.updateXPProgress(this.progressXP, this.textXP, increment);
     }
 
     @Override

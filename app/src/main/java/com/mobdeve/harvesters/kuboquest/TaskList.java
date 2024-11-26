@@ -158,6 +158,11 @@ public class TaskList extends AppCompatActivity {
             return insets;
         });
 
+        ProgressBar progressWater = findViewById(R.id.progressWater);
+        TextView txtWater = findViewById(R.id.txtWater);
+        ProgressBar progressXP = findViewById(R.id.progressXP);
+        TextView txtXP = findViewById(R.id.txtXP);
+
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
@@ -171,7 +176,7 @@ public class TaskList extends AppCompatActivity {
             setupData();
 
             adapter1 =  new TaskList_RecyclerViewAdapter(this,
-                    taskModelList, "Daily");
+                    taskModelList, "Daily", progressXP, txtXP);
 
             adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
                     playerLevels, plantSprites);
@@ -196,11 +201,6 @@ public class TaskList extends AppCompatActivity {
                 showLogoutConfirm();
             }
         });
-
-        ProgressBar progressWater = findViewById(R.id.progressWater);
-        TextView txtWater = findViewById(R.id.txtWater);
-        ProgressBar progressXP = findViewById(R.id.progressXP);
-        TextView txtXP = findViewById(R.id.txtXP);
 
         RecyclerView taskRecyclerView = findViewById(R.id.taskRecyclerView);
         RecyclerView levelRecyclerView = findViewById(R.id.levelRecyclerView);
@@ -308,6 +308,25 @@ public class TaskList extends AppCompatActivity {
 
     }
 
+    public static void updateXPProgress(ProgressBar progressXP, TextView txtXP, int increment) {
+        // Create an ObjectAnimator to animate progress from 0 to the desired value
+        int currentProgress = progressXP.getProgress();
+        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP();
+        float val = ((float)increment / maxProgress) * 100;
+        int addedProgress = (int)(((float)increment / maxProgress) * 100);
+
+        ObjectAnimator animation = ObjectAnimator.ofInt(progressXP, "progress", currentProgress, currentProgress + addedProgress);
+        animation.setDuration(500); // Set the duration (.5 seconds)
+        animation.start();
+
+        // update the text dynamically during the animation
+        animation.addUpdateListener(animator -> {
+            int animatedValue = (int) animator.getAnimatedValue();
+            animatedValue = (int)((float)animatedValue / progressXP.getMax() * maxProgress);
+            txtXP.setText(animatedValue + "XP");
+        });
+    }
+
     private void showLogoutConfirm(){
         Dialog logoutConfirmDialog = new Dialog(this);
 
@@ -356,7 +375,7 @@ public class TaskList extends AppCompatActivity {
                                         doc.getString("taskDesc"),
                                         taskStartDate,
                                         doc.getString("taskFrequency"),
-                                        doc.getString("taskDifficulty"),
+                                        doc.getString("taskDiffulty"),
                                         Boolean.TRUE.equals(doc.getBoolean("isDone"))
                                 );
 

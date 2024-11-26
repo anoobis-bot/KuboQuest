@@ -69,5 +69,9 @@ public class PlantModel {
     public int getCurrentXP() {
         return currentXP;
     }
+
+    public void incrementXP(int value) {
+        this.currentXP = this.currentXP + value;
+    }
 }
 

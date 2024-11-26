@@ -59,4 +59,8 @@ public class TaskModel {
     public String getTaskFrequency() {
         return taskFrequency;
     }
+
+    public String getTaskDifficulty() {
+        return taskDifficulty;
+    }
 }
