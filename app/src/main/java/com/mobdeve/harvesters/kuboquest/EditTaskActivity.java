@@ -30,6 +30,8 @@ public class EditTaskActivity extends AppCompatActivity {
 
 
     private String taskID;
+    private String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +44,7 @@ public class EditTaskActivity extends AppCompatActivity {
         });
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("task_name");
+        name = intent.getStringExtra("task_name");
         String desc = intent.getStringExtra("task_desc");
         String freq = intent.getStringExtra("task_freq");
         String difficulty = intent.getStringExtra("task_difficulty");
@@ -101,6 +103,7 @@ public class EditTaskActivity extends AppCompatActivity {
     private void deleteTask() {
         Intent result_intent = new Intent();
         result_intent.putExtra("task_id", taskID);
+        result_intent.putExtra("task_name", name);
         setResult(3, result_intent);
         finish();
     }
