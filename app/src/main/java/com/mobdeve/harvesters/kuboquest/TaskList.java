@@ -254,6 +254,25 @@ public class TaskList extends AppCompatActivity {
             }
         });
 
+        TextView txtPlantName = findViewById(R.id.txtPlantName);
+        TextView txtLevel = findViewById(R.id.txtLevel);
+        txtPlantName.setText(player.getActivePlant().getName());
+        switch (player.getActivePlant().getStage()) {
+            case SEED:
+                txtLevel.setText("Seed");
+                imgPlant.setImageResource(player.getActivePlant().getSeedResource());
+                break;
+            case SPROUT:
+                txtLevel.setText("Sprout");
+                imgPlant.setImageResource(player.getActivePlant().getSproutResource());
+            case GROWN:
+                txtLevel.setText("Grown");
+                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
+            case HARVEST:
+                txtLevel.setText("Ready to Harvest");
+                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
+        }
+
         ImageView bookIcon = findViewById(R.id.imageView8);
         bookIcon.setOnClickListener(new View.OnClickListener() {
             @Override
