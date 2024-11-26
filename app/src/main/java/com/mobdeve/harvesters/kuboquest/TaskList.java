@@ -139,7 +139,7 @@ public class TaskList extends AppCompatActivity {
                                     });
                         }
 
-                        Toast toast = Toast.makeText(TaskList.this, "Task Added!", duration);
+                        Toast toast = Toast.makeText(TaskList.this, "Added " + name + "!", duration);
                         toast.show();
                     }
 
@@ -152,11 +152,28 @@ public class TaskList extends AppCompatActivity {
                     else if (result.getResultCode() == 3)
                     {
                         String taskID = result.getData().getStringExtra("task_id");
+                        String taskName = result.getData().getStringExtra("task_name");
 
-                        adapter1.deleteTask(taskID);
+                        currentUser = mAuth.getCurrentUser();
 
-                        Toast toast = Toast.makeText(TaskList.this, "Deleted!", duration);
-                        toast.show();
+                        if (currentUser != null) {
+                            String uid = currentUser.getUid();
+
+                            usersRef.document(uid)
+                                    .collection(FireStoreReferences.TASK_COLLECTION)
+                                    .document(taskID)
+                                    .delete()
+                                    .addOnSuccessListener( aVoid -> {
+
+                                    adapter1.deleteTask(taskID);
+
+                                    Toast toast = Toast.makeText(TaskList.this, "Deleted " + taskName + "!", duration);
+                                    toast.show();
+
+                            });
+                        }
+
+
                     }
                     else if (result.getResultCode() == Activity.RESULT_CANCELED)
                     {
