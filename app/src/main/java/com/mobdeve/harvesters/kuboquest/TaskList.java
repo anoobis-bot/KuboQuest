@@ -186,7 +186,8 @@ public class TaskList extends AppCompatActivity {
             System.out.println(plant.getName());
         }
 
-        PlayerModel player = new PlayerModel(plantData.findPlantByName("tomato"));
+        PlayerModel.initialize(plantData.findPlantByName("tomato"));
+        PlayerModel player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);
         imgSettings.setOnClickListener(new View.OnClickListener() {

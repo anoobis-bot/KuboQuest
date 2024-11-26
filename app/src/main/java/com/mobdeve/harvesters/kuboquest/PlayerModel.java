@@ -5,7 +5,21 @@ public class PlayerModel {
     protected int energy;
     protected int soilWater;
 
-    public PlayerModel(PlantModel activePlant) {
+    private static PlayerModel sharedInstance = null;
+
+    public static void initialize(PlantModel activePlant) {
+        if (sharedInstance == null)
+        {
+            sharedInstance = new PlayerModel(activePlant);
+        }
+    }
+
+    public static PlayerModel getInstance()
+    {
+        return sharedInstance;
+    }
+
+    private PlayerModel(PlantModel activePlant) {
         this.activePlant = activePlant;
         this.energy = 8;
         this.soilWater = 70;
