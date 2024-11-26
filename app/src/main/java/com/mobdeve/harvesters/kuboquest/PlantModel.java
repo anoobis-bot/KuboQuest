@@ -13,6 +13,13 @@ public class PlantModel {
     private int iconResource;
     private int requiredEnergy;
 
+    public static enum Stage {
+        SEED,
+        SPROUT,
+        GROWN,
+        HARVEST
+    }
+
     public PlantModel(String name, String description, String rarity, int sproutXP, int grownXP, int harvestXP,
                       int iconResource) {
         this.name = name;
@@ -28,6 +35,17 @@ public class PlantModel {
         this.requiredEnergy = 10;
 
         this.iconResource = iconResource;
+    }
+
+    public Stage getStage() {
+        if (this.currentXP < this.sproutXP)
+            return Stage.SEED;
+        if (this.currentXP < this.grownXP)
+            return Stage.SPROUT;
+        if (this.currentXP < this.harvestXP)
+            return Stage.GROWN;
+
+        return Stage.HARVEST;
     }
 
     public String getName() {
