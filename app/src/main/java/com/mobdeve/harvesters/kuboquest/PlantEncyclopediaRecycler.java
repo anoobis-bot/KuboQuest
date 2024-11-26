@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlantEncyclopediaRecycler extends AppCompatActivity {
 
-    ArrayList<PlantModel> plantList = new ArrayList<>();
+    List<PlantModel> plantList = PlantData.plantData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class PlantEncyclopediaRecycler extends AppCompatActivity {
 
         RecyclerView plantEncyclopediaRecyclerView = findViewById(R.id.plantEncyclopediaRecyclerView);
 
-        setupPlantList();
+//        setupPlantList();
 
         PlantEncyclopedia_RecyclerViewAdapter adapter = new PlantEncyclopedia_RecyclerViewAdapter(this, plantList);
         plantEncyclopediaRecyclerView.setAdapter(adapter);

@@ -5,6 +5,7 @@
     "grownXP": "300",
     "harvestXP": "500",
     "rarity": "Common",
+    "icon": "ic_sesame",
     "description": "Sesame seeds are one of the oldest oilseed crops, cultivated over 3,000 years ago! They’re incredibly drought-resistant, perfect for warm climates."
   },
   {
@@ -184,7 +185,7 @@
     "description": "Hybrid squash varieties have extended shelf lives and are ideal for both culinary and ornamental uses."
   },
   {
-    "name": "Hybrid Tomato ",
+    "name": "Hybrid Tomato",
     "sproutXP": "550",
     "grownXP": "650",
     "harvestXP": "800",

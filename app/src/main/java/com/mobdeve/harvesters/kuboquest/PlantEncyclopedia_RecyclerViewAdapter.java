@@ -14,12 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlantEncyclopedia_RecyclerViewAdapter extends RecyclerView.Adapter<PlantEncyclopedia_RecyclerViewAdapter.MyViewHolder>{
     Context context;
-    ArrayList<PlantModel> plantList;
+    List<PlantModel> plantList;
 
-    public PlantEncyclopedia_RecyclerViewAdapter(Context context, ArrayList<PlantModel> plantList) {
+    public PlantEncyclopedia_RecyclerViewAdapter(Context context, List<PlantModel> plantList) {
         this.context = context;
         this.plantList = plantList;
     }
