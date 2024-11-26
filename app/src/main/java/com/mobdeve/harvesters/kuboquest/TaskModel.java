@@ -1,6 +1,7 @@
 package com.mobdeve.harvesters.kuboquest;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class TaskModel {
     protected String taskID;
@@ -62,5 +63,14 @@ public class TaskModel {
 
     public String getTaskDifficulty() {
         return taskDifficulty;
+    }
+
+    public String getTaskID() {
+        return taskID;
+    }
+
+    public String getDateString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+        return formatter.format(createdDate);
     }
 }

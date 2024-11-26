@@ -121,9 +121,12 @@ public class TaskList extends AppCompatActivity {
 
                     else if (result.getResultCode() == 3)
                     {
+                        String taskID = result.getData().getStringExtra("task_id");
+
+                        adapter1.deleteTask(taskID);
+
                         Toast toast = Toast.makeText(TaskList.this, "Deleted!", duration);
                         toast.show();
-
                     }
                     else if (result.getResultCode() == Activity.RESULT_CANCELED)
                     {
@@ -178,7 +181,7 @@ public class TaskList extends AppCompatActivity {
 
             adapter1 =  new TaskList_RecyclerViewAdapter(this,
                     taskModelList, "Daily", progressXP, txtXP, progressWater, txtWater,
-                    txtLevel, imgPlant, adapter2);
+                    txtLevel, imgPlant, adapter2, myActivityResultLauncher);
 
             loadUserDataFromDB();
         }
@@ -190,7 +193,7 @@ public class TaskList extends AppCompatActivity {
             System.out.println(plant.getName());
         }
 
-        PlayerModel.initialize(PlantData.findPlantByName("Tomato"));
+        PlayerModel.initialize(PlantData.findPlantByName("Hybrid Winter Melon"));
         PlayerModel player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);

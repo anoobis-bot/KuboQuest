@@ -22,9 +22,14 @@ public class EditTaskActivity extends AppCompatActivity {
     private TextView addDateTextView;
     private Button editTaskBtn;
     private Button deleteTaskBtn;
-    private Spinner frequencySpinner;
-    private Spinner difficultySpinner;
 
+    private TextView txtDelTaskName;
+    private TextView txtDelTaskDesc;
+    private TextView txtDelTaskFreq;
+    private TextView txtDelTaskDifficulty;
+
+
+    private String taskID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,35 +41,33 @@ public class EditTaskActivity extends AppCompatActivity {
             return insets;
         });
 
-        frequencySpinner = findViewById(R.id.frequencySpinner);
-        difficultySpinner = findViewById(R.id.difficultySpinner);
-        ArrayList<String> frequencyChoices = new ArrayList<>();
-        frequencyChoices.add("Daily");
-        frequencyChoices.add("Weekly");
-        frequencyChoices.add("Yearly");
-        ArrayList<String> difficultyChoices = new ArrayList<>();
-        difficultyChoices.add("Easy");
-        difficultyChoices.add("Medium");
-        difficultyChoices.add("Hard");
-        difficultyChoices.add("Extreme");
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("task_name");
+        String desc = intent.getStringExtra("task_desc");
+        String freq = intent.getStringExtra("task_freq");
+        String difficulty = intent.getStringExtra("task_difficulty");
+        String date = intent.getStringExtra("task_date");
+        taskID = intent.getStringExtra("task_id");
 
-        ArrayAdapter<String> frequencyAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, frequencyChoices);
-        ArrayAdapter<String> difficultyAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, difficultyChoices);
-
-        frequencyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        difficultyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        frequencySpinner.setAdapter(frequencyAdapter);
-        difficultySpinner.setAdapter(difficultyAdapter);
-
+        txtDelTaskName = findViewById(R.id.txtDelTaskName);
+        txtDelTaskDesc = findViewById(R.id.txtDelTaskDesc);
+        txtDelTaskFreq = findViewById(R.id.txtDelTaskFreq);
+        txtDelTaskDifficulty = findViewById(R.id.txtDelTaskDifficulty);
         addDateTextView = findViewById(R.id.addDateTextView);
-        editTaskBtn = findViewById(R.id.editTaskBtn);
-        deleteTaskBtn = findViewById(R.id.deleteTaskBtn);
 
-        addDateTextView.setOnClickListener(v -> showDatePickerDialog());
-        editTaskBtn.setOnClickListener(v -> editTask());
+        txtDelTaskName.setText(name);
+        txtDelTaskDesc.setText(desc);
+        txtDelTaskFreq.setText(freq);
+        txtDelTaskDifficulty.setText(difficulty);
+        addDateTextView.setText(date);
+
+        txtDelTaskName.setEnabled(false);
+        txtDelTaskDesc.setEnabled(false);
+        txtDelTaskFreq.setEnabled(false);
+        txtDelTaskDifficulty.setEnabled(false);
+        addDateTextView.setEnabled(false);
+
+        deleteTaskBtn = findViewById(R.id.deleteTaskBtn);
         deleteTaskBtn.setOnClickListener(v -> deleteTask());
     }
 
@@ -97,7 +100,8 @@ public class EditTaskActivity extends AppCompatActivity {
 
     private void deleteTask() {
         Intent result_intent = new Intent();
-        setResult(0, result_intent);
+        result_intent.putExtra("task_id", taskID);
+        setResult(3, result_intent);
         finish();
     }
 }
