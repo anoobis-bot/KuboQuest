@@ -36,23 +36,7 @@ tools:context=".PlantEncyclopediaRecycler">
     android:orientation="horizontal"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent">
-
-    <ImageView
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:layout_weight="1"
-        android:contentDescription="Home"
-        android:src="@drawable/ic_book" />
-
-    <ImageView
-        android:layout_width="38dp"
-        android:layout_height="33dp"
-        android:layout_weight="1"
-        android:contentDescription="Add"
-        android:src="@drawable/ic_add" />
-
-</LinearLayout>
+    app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/plantEncyclopediaRecyclerView"
