@@ -121,6 +121,7 @@ public class TaskList extends AppCompatActivity {
                             taskData.put(FireStoreReferences.TASKSTARTDATE_FIELD, start_date);
                             taskData.put(FireStoreReferences.TASKFREQUENCY_FIELD, frequency);
                             taskData.put(FireStoreReferences.TASKDIFFICULTY_FIELD, difficulty);
+                            taskData.put(FireStoreReferences.TASKISDONE_FIELD, false);
 
                             Date finalStart_date = start_date;
                             usersRef.document(uid).collection(FireStoreReferences.TASK_COLLECTION)
@@ -331,7 +332,7 @@ public class TaskList extends AppCompatActivity {
 
                                             // animate after data is received from db
                                             animateProgress(progressWater, player.getSoilWater(), 100, txtWater, "", "/100", 1);
-                                            animateProgress(progressXP, progressXP.getProgress(), player.getActivePlant().getHarvestXP(), txtXP, "", "XP", 1);
+                                            animateProgress(progressXP, player.getActivePlant().getCurrentXP(), player.getActivePlant().getHarvestXP(), txtXP, "", "XP", 1);
                                         }
                                     });
 
@@ -529,7 +530,7 @@ public class TaskList extends AppCompatActivity {
                                         taskStartDate,
                                         doc.getString("taskFrequency"),
                                         doc.getString("taskDifficulty"),
-                                        Boolean.TRUE.equals(doc.getBoolean("isDone"))
+                                        Boolean.TRUE.equals(doc.getBoolean("taskIsDone"))
                                 );
 
                                 // Add task to taskModelList

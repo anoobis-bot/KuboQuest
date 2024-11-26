@@ -46,6 +46,12 @@ public class PlayerModel {
     }
 
     public void incrementWater(int value) {
-        this.soilWater = this.soilWater +  value;
+        if (this.soilWater + value >= 100) {
+            this.soilWater = 100;
+        }
+
+        else {
+            this.soilWater = this.soilWater +  value;
+        }
     }
 }

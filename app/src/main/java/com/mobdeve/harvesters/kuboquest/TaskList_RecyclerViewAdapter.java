@@ -16,6 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_RecyclerViewAdapter.MyViewHolder> {
@@ -23,6 +28,11 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
     ArrayList<TaskModel> taskModelList;
     ArrayList<TaskModel> filteredTaskList;
     String filterFreq;
+
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser;
+    CollectionReference usersRef = db.collection(FireStoreReferences.USER_COLLECTION);
 
     ProgressBar progressXP;
     TextView textXP;
@@ -54,6 +64,9 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
         this.adapter2 = adapater2;
 
         this.launcher = launcher;
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
     }
 
     public void changeFilter(String filterFreq) {
@@ -121,6 +134,7 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
         holder.checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 filteredTaskList.get(holder.getAdapterPosition()).invertIsDone();
                 holder.checkBox.setEnabled(false);
                 holder.txtTaskName.setPaintFlags(holder.txtTaskName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
@@ -131,6 +145,32 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 String difficulty = filteredTaskList.get(holder.getAdapterPosition()).getTaskDifficulty();
                 player.getActivePlant().incrementXP(GainDebuffData.getXPGain(frequency, difficulty));
                 player.incrementWater(GainDebuffData.getWaterGain(frequency, difficulty));
+
+                if (currentUser != null) {
+                    String uid = currentUser.getUid();
+                    String taskID = filteredTaskList.get(holder.getAdapterPosition()).getTaskID();
+
+                    usersRef.document(uid)
+                            .get()
+                            .addOnSuccessListener(documentSnapshot -> {
+                                if (documentSnapshot.exists()) {
+                                    String plantID = documentSnapshot.getString("activePlant");
+
+                                    usersRef.document(uid)
+                                            .collection(FireStoreReferences.PLANT_COLLECTION)
+                                            .document(plantID)
+                                            .update(FireStoreReferences.CURRENTXP_FIELD, player.getActivePlant().getCurrentXP());
+                                }
+                            });
+
+                    usersRef.document(uid)
+                            .collection(FireStoreReferences.TASK_COLLECTION)
+                            .document(taskID)
+                            .update(FireStoreReferences.TASKISDONE_FIELD, true);
+
+                    usersRef.document(uid)
+                            .update(FireStoreReferences.WATERLEVEL_FIELD, player.getSoilWater());
+                }
 
 //                progress(GainDebuffData.getXPGain(frequency, difficulty));
                 TaskList.updateProgressBar(progressXP, textXP, player.getActivePlant().getHarvestXP(),

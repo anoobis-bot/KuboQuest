@@ -113,7 +113,12 @@ public class PlantModel {
     }
 
     public void incrementXP(int value) {
-        this.currentXP = this.currentXP + value;
+        if(currentXP + value >= harvestXP) {
+            this.currentXP = harvestXP;
+        }
+        else {
+            this.currentXP = this.currentXP + value;
+        }
     }
 
     public int getSeedResource() {

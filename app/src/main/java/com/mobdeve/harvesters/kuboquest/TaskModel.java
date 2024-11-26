@@ -41,6 +41,10 @@ public class TaskModel {
         this.isDone = isDone;
     }
 
+    public String getTaskID() {
+        return taskID;
+    }
+
     public String getTaskName() {
         return taskName;
     }
@@ -63,10 +67,6 @@ public class TaskModel {
 
     public String getTaskDifficulty() {
         return taskDifficulty;
-    }
-
-    public String getTaskID() {
-        return taskID;
     }
 
     public String getDateString() {
