@@ -115,11 +115,13 @@ public class RegisterScreen extends AppCompatActivity {
                                         String uid = currentUser.getUid();
 
                                         userData.put(FireStoreReferences.USERNAME_FIELD, username.getText().toString());
+                                        userData.put(FireStoreReferences.TOTALENERGYSAVED_FIELD, 0);
+                                        userData.put(FireStoreReferences.ACTIVEPLANT_FIELD, 0);
 
                                         db.collection(FireStoreReferences.USER_COLLECTION).document(uid).set(userData);
                                     }
 
-                                    Intent intent = new Intent(getApplicationContext(), TaskList.class);
+                                    Intent intent = new Intent(getApplicationContext(), FirstSeed.class);
                                     startActivity(intent);
                                     finish();
                                 }
