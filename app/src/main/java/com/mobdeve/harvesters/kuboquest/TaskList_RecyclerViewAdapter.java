@@ -177,9 +177,9 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
 //                progress(GainDebuffData.getXPGain(frequency, difficulty));
                 TaskList.updateProgressBar(progressXP, textXP, origXP, player.getActivePlant().getHarvestXP(),
-                        GainDebuffData.getXPGain(frequency, difficulty), "XP");
+                        GainDebuffData.getXPGain(frequency, difficulty), "XP", false);
                 TaskList.updateProgressBar(progressWater, textWater, origWater,100,
-                        GainDebuffData.getWaterGain(frequency, difficulty), "/100");
+                        GainDebuffData.getWaterGain(frequency, difficulty), "/100", true);
                 TaskList.updatePlantImgTxt(txtLevel, imgPlant);
 
                 adapter2.notifyDataSetChanged();

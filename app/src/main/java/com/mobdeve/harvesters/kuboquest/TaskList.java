@@ -432,7 +432,8 @@ public class TaskList extends AppCompatActivity {
 
     }
 
-    public static void updateProgressBar(ProgressBar progressXP, TextView txtXP, int origProgress, int maxProgress, int increment, String postText) {
+    public static void updateProgressBar(ProgressBar progressXP, TextView txtXP, int origProgress, int maxProgress, int increment, String postText,
+                                         boolean capProgress) {
 //        // Create an ObjectAnimator to animate progress from 0 to the desired value
 //        int currentProgress = progressXP.getProgress();
 //        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP();
@@ -455,6 +456,11 @@ public class TaskList extends AppCompatActivity {
 //        int maxProgress = PlayerModel.getInstance().getActivePlant().getHarvestXP(); // Maximum progress value
         double val = ((double) increment / maxProgress) * (double)100; // Calculate normalized increment
         double targetProgress = currentProgress + val; // Target progress as a float
+
+        if ((int)targetProgress > 100 && capProgress)
+        {
+            targetProgress = 100;
+        }
 
         // Create a ValueAnimator to animate between the current progress and target progress
         ValueAnimator animation = ValueAnimator.ofFloat((float)currentProgress, (float)targetProgress);
