@@ -162,6 +162,9 @@ public class TaskList extends AppCompatActivity {
         TextView txtWater = findViewById(R.id.txtWater);
         ProgressBar progressXP = findViewById(R.id.progressXP);
         TextView txtXP = findViewById(R.id.txtXP);
+        TextView txtPlantName = findViewById(R.id.txtPlantName);
+        TextView txtLevel = findViewById(R.id.txtLevel);
+        ImageView imgPlant = findViewById(R.id.imgPlant);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -176,7 +179,7 @@ public class TaskList extends AppCompatActivity {
             setupData();
 
             adapter1 =  new TaskList_RecyclerViewAdapter(this,
-                    taskModelList, "Daily", progressXP, txtXP);
+                    taskModelList, "Daily", progressXP, txtXP, txtLevel, imgPlant);
 
             adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
                     playerLevels, plantSprites);
@@ -233,7 +236,6 @@ public class TaskList extends AppCompatActivity {
         });
 
         showingTask = true;
-        ImageView imgPlant = findViewById(R.id.imgPlant);
         imgPlant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -254,24 +256,8 @@ public class TaskList extends AppCompatActivity {
             }
         });
 
-        TextView txtPlantName = findViewById(R.id.txtPlantName);
-        TextView txtLevel = findViewById(R.id.txtLevel);
         txtPlantName.setText(player.getActivePlant().getName());
-        switch (player.getActivePlant().getStage()) {
-            case SEED:
-                txtLevel.setText("Seed");
-                imgPlant.setImageResource(player.getActivePlant().getSeedResource());
-                break;
-            case SPROUT:
-                txtLevel.setText("Sprout");
-                imgPlant.setImageResource(player.getActivePlant().getSproutResource());
-            case GROWN:
-                txtLevel.setText("Grown");
-                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
-            case HARVEST:
-                txtLevel.setText("Ready to Harvest");
-                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
-        }
+        updatePlantImgTxt(txtLevel, imgPlant);
 
         ImageView bookIcon = findViewById(R.id.imageView8);
         bookIcon.setOnClickListener(new View.OnClickListener() {
@@ -344,6 +330,28 @@ public class TaskList extends AppCompatActivity {
             animatedValue = (int)((float)animatedValue / progressXP.getMax() * maxProgress);
             txtXP.setText(animatedValue + "XP");
         });
+    }
+
+    public static void updatePlantImgTxt (TextView txtLevel, ImageView imgPlant) {
+        PlayerModel player = PlayerModel.getInstance();
+        switch (player.getActivePlant().getStage()) {
+            case SEED:
+                txtLevel.setText("Seed");
+                imgPlant.setImageResource(player.getActivePlant().getSeedResource());
+                break;
+            case SPROUT:
+                txtLevel.setText("Sprout");
+                imgPlant.setImageResource(player.getActivePlant().getSproutResource());
+                break;
+            case GROWN:
+                txtLevel.setText("Grown");
+                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
+                break;
+            case HARVEST:
+                txtLevel.setText("Ready to Harvest");
+                imgPlant.setImageResource(player.getActivePlant().getGrownResource());
+                break;
+        }
     }
 
     private void showLogoutConfirm(){

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,9 +23,12 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
     ProgressBar progressXP;
     TextView textXP;
+    TextView txtLevel;
+    ImageView imgPlant;
 
     public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList, String filterFreq,
-                                        ProgressBar progressBar, TextView textXP) {
+                                        ProgressBar progressBar, TextView textXP,
+                                        TextView txtLevel, ImageView imgPlant) {
         this.context = context;
         this.taskModelList = taskModelList;
         this.filteredTaskList = new ArrayList<>();
@@ -32,6 +36,8 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
         this.progressXP = progressBar;
         this.textXP = textXP;
+        this.txtLevel = txtLevel;
+        this.imgPlant = imgPlant;
     }
 
     public void changeFilter(String filterFreq) {
@@ -100,15 +106,17 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 String difficulty = filteredTaskList.get(holder.getAdapterPosition()).getTaskDifficulty();
                 player.getActivePlant().incrementXP(GainDebuffData.getXPGain(frequency, difficulty));
 
-                progress(GainDebuffData.getXPGain(frequency, difficulty));
+//                progress(GainDebuffData.getXPGain(frequency, difficulty));
+                TaskList.updateXPProgress(progressXP, textXP, GainDebuffData.getXPGain(frequency, difficulty));
+                TaskList.updatePlantImgTxt(txtLevel, imgPlant);
             }
         });
     }
 
-    public void progress(int increment)
-    {
-        TaskList.updateXPProgress(this.progressXP, this.textXP, increment);
-    }
+//    public void progress(int increment)
+//    {
+//        ;
+//    }
 
     @Override
     public int getItemCount() {
