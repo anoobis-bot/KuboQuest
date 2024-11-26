@@ -46,4 +46,13 @@ public class PlantData {
     public List<PlantModel> getPlantData() {
         return plantData;
     }
+
+    public PlantModel findPlantByName(String name) {
+        for (PlantModel plant : plantData) {
+            if (plant.getName().equalsIgnoreCase(name)) {
+                return plant; // Found the matching plant
+            }
+        }
+        return null;
+    }
 }

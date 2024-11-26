@@ -1,12 +1,12 @@
 package com.mobdeve.harvesters.kuboquest;
 
-public class PlayerLevelModel {
+public class PlayerModel {
     protected PlantModel activePlant;
     protected int energy;
     protected int soilWater;
 
-    public PlayerLevelModel() {
-        this.activePlant = null;
+    public PlayerModel(PlantModel activePlant) {
+        this.activePlant = activePlant;
         this.energy = 8;
         this.soilWater = 70;
     }

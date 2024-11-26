@@ -65,5 +65,9 @@ public class PlantModel {
     public int getRequiredEnergy() {
         return requiredEnergy;
     }
+
+    public int getCurrentXP() {
+        return currentXP;
+    }
 }
 
