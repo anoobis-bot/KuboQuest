@@ -173,12 +173,12 @@ public class TaskList extends AppCompatActivity {
             //set all the data of the user
             setupData();
 
-            adapter1 =  new TaskList_RecyclerViewAdapter(this,
-                    taskModelList, "Daily", progressXP, txtXP, progressWater, txtWater,
-                    txtLevel, imgPlant);
-
             adapter2 =  new PlayerLevels_RecyclerViewAdapter(this,
                     playerLevels, plantSprites);
+
+            adapter1 =  new TaskList_RecyclerViewAdapter(this,
+                    taskModelList, "Daily", progressXP, txtXP, progressWater, txtWater,
+                    txtLevel, imgPlant, adapter2);
 
             loadUserDataFromDB();
         }
@@ -190,7 +190,7 @@ public class TaskList extends AppCompatActivity {
             System.out.println(plant.getName());
         }
 
-        PlayerModel.initialize(PlantData.findPlantByName("Hybrid Winter Melon"));
+        PlayerModel.initialize(PlantData.findPlantByName("Tomato"));
         PlayerModel player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);

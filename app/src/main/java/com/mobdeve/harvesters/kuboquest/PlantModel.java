@@ -17,10 +17,20 @@ public class PlantModel {
     private int requiredEnergy;
 
     public static enum Stage {
-        SEED,
-        SPROUT,
-        GROWN,
-        HARVEST
+        SEED("Seed"),
+        SPROUT("Sprout"),
+        GROWN("Grown"),
+        HARVEST("Harvest");
+
+        private String stage;
+
+        Stage(String stage) {
+            this.stage = stage;
+        }
+
+        public String getString() {
+            return stage;
+        }
     }
 
     public PlantModel(String name, String description, String rarity, int sproutXP, int grownXP, int harvestXP,

@@ -28,9 +28,11 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
     TextView txtLevel;
     ImageView imgPlant;
 
+    PlayerLevels_RecyclerViewAdapter adapter2;
+
     public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList, String filterFreq,
                                         ProgressBar progressBar, TextView textXP, ProgressBar progressWater, TextView textWater,
-                                        TextView txtLevel, ImageView imgPlant) {
+                                        TextView txtLevel, ImageView imgPlant, PlayerLevels_RecyclerViewAdapter adapater2) {
         this.context = context;
         this.taskModelList = taskModelList;
         this.filteredTaskList = new ArrayList<>();
@@ -42,6 +44,8 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
         this.textWater = textWater;
         this.txtLevel = txtLevel;
         this.imgPlant = imgPlant;
+
+        this.adapter2 = adapater2;
     }
 
     public void changeFilter(String filterFreq) {
@@ -117,6 +121,8 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 TaskList.updateProgressBar(progressWater, textWater, 100,
                         GainDebuffData.getWaterGain(frequency, difficulty), "/100");
                 TaskList.updatePlantImgTxt(txtLevel, imgPlant);
+
+                adapter2.notifyDataSetChanged();
             }
         });
     }
