@@ -12,7 +12,7 @@
     tools:context=".FirstSeed">
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/seedName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10sp"
@@ -23,7 +23,7 @@
         android:textSize="48sp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/seedImg"
         android:layout_width="247dp"
         android:layout_height="236dp"
         android:layout_marginTop="10sp"
