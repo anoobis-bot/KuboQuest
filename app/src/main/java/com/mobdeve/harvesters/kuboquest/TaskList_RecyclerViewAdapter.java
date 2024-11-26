@@ -1,6 +1,7 @@
 package com.mobdeve.harvesters.kuboquest;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,9 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,9 +43,12 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
 
     PlayerLevels_RecyclerViewAdapter adapter2;
 
+    private ActivityResultLauncher<Intent> launcher;
+
     public TaskList_RecyclerViewAdapter(Context context, ArrayList<TaskModel> taskModelList, String filterFreq,
                                         ProgressBar progressBar, TextView textXP, ProgressBar progressWater, TextView textWater,
-                                        TextView txtLevel, ImageView imgPlant, PlayerLevels_RecyclerViewAdapter adapater2) {
+                                        TextView txtLevel, ImageView imgPlant, PlayerLevels_RecyclerViewAdapter adapater2,
+                                        ActivityResultLauncher<Intent> launcher) {
         this.context = context;
         this.taskModelList = taskModelList;
         this.filteredTaskList = new ArrayList<>();
@@ -56,6 +62,8 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
         this.imgPlant = imgPlant;
 
         this.adapter2 = adapater2;
+
+        this.launcher = launcher;
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -71,6 +79,15 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                     filteredTaskList.add(task);
                 }
             }
+
+            notifyDataSetChanged();
+        }
+    }
+
+    public void deleteTask(String taskID) {
+        synchronized (this) {
+            filteredTaskList.removeIf(task -> task.getTaskID().equals(taskID));
+            taskModelList.removeIf(task -> task.getTaskID().equals(taskID));
 
             notifyDataSetChanged();
         }
@@ -165,6 +182,21 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
                 adapter2.notifyDataSetChanged();
             }
         });
+
+        holder.taskCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), EditTaskActivity.class);
+
+                intent.putExtra("task_name", filteredTaskList.get(holder.getAdapterPosition()).getTaskName());
+                intent.putExtra("task_desc", filteredTaskList.get(holder.getAdapterPosition()).getTaskDescription());
+                intent.putExtra("task_freq", filteredTaskList.get(holder.getAdapterPosition()).getTaskFrequency());
+                intent.putExtra("task_difficulty", filteredTaskList.get(holder.getAdapterPosition()).getTaskDifficulty());
+                intent.putExtra("task_date", filteredTaskList.get(holder.getAdapterPosition()).getDateString());
+                intent.putExtra("task_id", filteredTaskList.get(holder.getAdapterPosition()).getTaskID());
+                launcher.launch(intent);
+            }
+        });
     }
 
 //    public void progress(int increment)
@@ -183,12 +215,16 @@ public class TaskList_RecyclerViewAdapter extends RecyclerView.Adapter<TaskList_
         TextView txtTaskDesc;
         CheckBox checkBox;
 
+        CardView taskCard;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtTaskName = itemView.findViewById(R.id.txtTaskName);
             txtTaskDesc = itemView.findViewById(R.id.txtTaskDesc);
             checkBox = itemView.findViewById(R.id.checkBox);
+
+            taskCard = itemView.findViewById(R.id.taskCard);
         }
     }
 }
