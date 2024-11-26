@@ -18,6 +18,7 @@ public class NotificationReceiver extends BroadcastReceiver {
             return;
         }
 
+        String message = intent.getStringExtra("NOTIFICATION_MESSAGE");
         String channelId = "repeating_notifications";
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -35,7 +36,7 @@ public class NotificationReceiver extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.kubo2)
                 .setContentTitle("Reminder")
-                .setContentText("Just a daily reminder. Don't forget to do your task.")
+                .setContentText( message != null ? message : "Just a daily reminder. Don't forget to do your task.")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         notificationManager.notify((int) System.currentTimeMillis(), builder.build());
