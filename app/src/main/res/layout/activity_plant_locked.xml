@@ -32,26 +32,7 @@
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/sun_icon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:contentDescription="Sun Icon"
-                android:src="@drawable/ic_sun" />
-
-            <TextView
-                android:id="@+id/sun_energy_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="8"
-                android:paddingTop="5dp"
-                android:textColor="@android:color/black"
-                android:textSize="16sp" />
-        </LinearLayout>
+            android:layout_margin="16dp"/>
 
         <FrameLayout
             android:id="@+id/image_frame"
@@ -109,22 +90,6 @@
             app:layout_constraintTop_toBottomOf="@id/plant_name" />
 
         <!-- Required Energy Button -->
-        <Button
-            android:id="@+id/required_energy_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:backgroundTint="#C4C4C4"
-            android:text="Required Energy: 10"
-            android:textColor="@android:color/white"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:textSize="16sp"
-            android:fontFamily="@font/poppins_medium"
-            app:layout_constraintTop_toBottomOf="@id/plant_description"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

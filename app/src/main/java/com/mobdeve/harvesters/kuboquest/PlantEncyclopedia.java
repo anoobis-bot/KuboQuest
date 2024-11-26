@@ -219,8 +219,8 @@ public class PlantEncyclopedia extends AppCompatActivity {
         plantNameTextView.setText(plantName);  // Dynamically set the name
 
         // Set the required energy for unlocking the plant
-        TextView requiredEnergyButton = lockedPlantDetailsDialog.findViewById(R.id.required_energy_button);
-        requiredEnergyButton.setText("Required Energy: " + requiredEnergy);
+//        TextView requiredEnergyButton = lockedPlantDetailsDialog.findViewById(R.id.required_energy_button);
+//        requiredEnergyButton.setText("Required Energy: " + requiredEnergy);
 
 //        // Handle the close button click
 //        ImageView closeButton = lockedPlantDetailsDialog.findViewById(R.id.close_button);

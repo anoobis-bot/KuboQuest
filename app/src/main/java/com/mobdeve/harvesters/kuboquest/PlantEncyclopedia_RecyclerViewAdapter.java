@@ -138,8 +138,8 @@ public class PlantEncyclopedia_RecyclerViewAdapter extends RecyclerView.Adapter<
             plantNameDialog.setText(plantName);  // Dynamically set the name
 
             // Set the required energy for unlocking the plant
-            TextView requiredEnergyButton = lockedPlantDetailsDialog.findViewById(R.id.required_energy_button);
-            requiredEnergyButton.setText("Required Energy: " + requiredEnergy);
+//            TextView requiredEnergyButton = lockedPlantDetailsDialog.findViewById(R.id.required_energy_button);
+//            requiredEnergyButton.setText("Required Energy: " + requiredEnergy);
 
             // Show the dialog
             lockedPlantDetailsDialog.show();
