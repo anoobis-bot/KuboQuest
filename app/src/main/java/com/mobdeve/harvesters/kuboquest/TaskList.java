@@ -68,6 +68,10 @@ public class TaskList extends AppCompatActivity {
     TextView goalXP;
     ProgressBar progressXP;
     TextView txtXP;
+    TextView txtPlantName;
+    TextView txtLevel;
+    ImageView imgPlant;
+    ImageView imgFruit;
 
     // DB variables
     PlantModel currentPlant;
@@ -182,9 +186,11 @@ public class TaskList extends AppCompatActivity {
         txtWater = findViewById(R.id.txtWater);
         progressXP = findViewById(R.id.progressXP);
         txtXP = findViewById(R.id.txtXP);
-        TextView txtPlantName = findViewById(R.id.txtPlantName);
-        TextView txtLevel = findViewById(R.id.txtLevel);
-        ImageView imgPlant = findViewById(R.id.imgPlant);
+        goalXP = findViewById(R.id.txtGoal);
+        txtPlantName = findViewById(R.id.txtPlantName);
+        txtLevel = findViewById(R.id.txtLevel);
+        imgPlant = findViewById(R.id.imgPlant);
+        imgFruit = findViewById(R.id.imgFruit);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -209,8 +215,6 @@ public class TaskList extends AppCompatActivity {
             loadUserDataFromDB();
         }
 
-        PlayerModel.initialize(PlantData.findPlantByName("Tomato"));
-        player = PlayerModel.getInstance();
 
         ImageView imgSettings = findViewById(R.id.imgSettings);
         imgSettings.setOnClickListener(new View.OnClickListener() {
@@ -229,8 +233,6 @@ public class TaskList extends AppCompatActivity {
         levelRecyclerView.setAdapter(adapter2);
         levelRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        goalXP = findViewById(R.id.txtGoal);
-        goalXP.setText("Goal: " + player.getActivePlant().getHarvestXP() + "XP");
 
         RadioGroup sortByButtons = findViewById(R.id.sortByButtons);
         sortByButtons.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -268,12 +270,6 @@ public class TaskList extends AppCompatActivity {
             }
         });
 
-        txtPlantName.setText(player.getActivePlant().getName());
-        updatePlantImgTxt(txtLevel, imgPlant);
-
-        ImageView imgFruit = findViewById(R.id.imgFruit);
-        imgFruit.setImageResource(player.getActivePlant().getIconResource());
-
         ImageView bookIcon = findViewById(R.id.imageView8);
         bookIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -306,7 +302,6 @@ public class TaskList extends AppCompatActivity {
                             currentWaterLevel = Objects.requireNonNull(documentSnapshot.getLong("waterLevel")).intValue();
                             currentPlantID = documentSnapshot.getString("activePlant");
 
-                            player.setSoilWater(currentWaterLevel);
 
 
                             usersRef.document(uid)
@@ -317,8 +312,19 @@ public class TaskList extends AppCompatActivity {
                                         if (documentSnapshot1.exists()) {
                                             currentPlantXP = Objects.requireNonNull(documentSnapshot1.getLong("currentXP")).intValue();
                                             currentPlantName = documentSnapshot1.getString("plantName");
+
+                                            // initialize all data in the UI
+                                            PlayerModel.initialize(PlantData.findPlantByName(currentPlantName));
+                                            player = PlayerModel.getInstance();
+                                            player.setSoilWater(currentWaterLevel);
                                             player.getActivePlant().setCurrentXP(currentPlantXP);
                                             progressXP.setProgress(player.getActivePlant().getCurrentXP());
+                                            txtPlantName.setText(player.getActivePlant().getName());
+                                            updatePlantImgTxt(txtLevel, imgPlant);
+                                            imgFruit.setImageResource(player.getActivePlant().getIconResource());
+
+
+                                            goalXP.setText("Goal: " + player.getActivePlant().getHarvestXP() + "XP");
 
                                             // animate after data is received from db
                                             animateProgress(progressWater, player.getSoilWater(), 100, txtWater, "", "/100", 1);
@@ -344,7 +350,6 @@ public class TaskList extends AppCompatActivity {
                                                 }
                                             }
                                         }
-                                        System.out.println("test");
                                     });
                         }
                     });
